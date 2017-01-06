@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+    <!-- ↓↓↓↓↓↓↓↓↓↓ 测试如何配置集合属性  START ↓↓↓↓↓↓↓↓↓↓  -->
+    <!-- 通过构造方法来配置Bean 的属性 -->
+    <bean id="car3" class="com.spring4.learn.poio.collections.CarForCollection">
+        <!-- index 构造方法中的参数索引 -->
+        <constructor-arg value="Audi" index="0"></constructor-arg> 
+        <constructor-arg value="ShangHai" index="1"></constructor-arg>
+        <constructor-arg value="300000" index="2"></constructor-arg>
+    </bean>
+    
+    <bean id="car4" class="com.spring4.learn.poio.collections.CarForCollection"> 
+        <!-- 使用构造器属性值可以指定参数的位置和参数类型, 以区分重载的构造器  -->
+        <constructor-arg value="Baoma宝马" type="java.lang.String" index="1"></constructor-arg> 
+        
+        <constructor-arg type="java.lang.String">
+            <!-- 注入的值可以在属性中定义, 也可以在 value 子节点中定义  -->
+            <!-- 若字面值中包含特殊字符, 可以用<![CDATA[]]> 把字面值包裹起来 -->
+            <value><![CDATA[<ShangHai^测试>]]></value> 
+        </constructor-arg>
+        
+        <constructor-arg type="int">
+            <!-- 注入的值可以在属性中定义, 也可以在子节点中定义  -->
+            <value>249</value>
+        </constructor-arg>
+        
+        <property name="maxSpeed" value="420"/>
+        <property name="price" value="300000"/>
+    </bean>
+
+    <bean id="person5" class="com.spring4.learn.poio.collections.PersonForCollection">
+        <property name="name" value="测试人员名称"></property>
+        <property name="age" value="27"></property>
+        <property name="carList">
+            <list>
+                <ref bean="car3"/>
+                <ref bean="car4"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+    <!-- ↓↓↓↓↓↓↓↓↓↓ 与属性 Bean之间的引用关系 START ↓↓↓↓↓↓↓↓↓↓  -->
+
+    <!-- 与属性 Bean之间的引用关系  -->
+    <bean id="person" class="com.spring4.learn.poio.Person">
+        <property name="name" value="Tom测试" />
+        <property name="age" value="24"/>
+       
+        <!-- 可以使用 property 的 ref 属性 建立 Bean之间的引用关系  或内部Bean-->
+        <!-- 
+        <property name="car" ref="car2"/>
+         -->
+         
+        <!-- 建立 Bean之间的引用关系 另一种形式 -->
+        <!-- 
+        <property name="car">
+            <ref bean=""/>
+        </property>
+         -->
+         
+        <!-- 内部 Bean -->
+        <property name="car">
+            <!-- 内部 Bean 不能被外部引用, 只能在内部使用 -->
+            <bean class="com.spring4.learn.poio.Car">
+                <constructor-arg value="Ford" index="0"></constructor-arg> 
+                <constructor-arg value="Changan" index="1"></constructor-arg>
+                <constructor-arg value="200000" type="double"></constructor-arg>
+            </bean>
+        </property>
+    </bean>
+    
+    <!-- 与属性 Bean之间的引用关系  构造器注入-->
+    <bean id="person2" class="com.spring4.learn.poio.Person">
+        <constructor-arg value="Jerry"></constructor-arg>
+        <constructor-arg value="25"></constructor-arg>
+        <constructor-arg ref="car"></constructor-arg>
+    </bean>
+    
+    <!-- 与属性 Bean之间的引用关系  测试赋值null-->
+    <bean id="person3" class="com.spring4.learn.poio.Person">
+        <constructor-arg value="Jerry"></constructor-arg>
+        <constructor-arg value="25"></constructor-arg>
+        <!-- 测试赋值null car = null -->
+        <!-- 可以使用专用的 <null/> 元素标签为Bean的字符串或其它对象类型的属性注入 null -->
+        <constructor-arg><null/></constructor-arg>
+    </bean>
+    
+    <!-- 与属性 Bean之间的引用关系  级联属性配置-->
+    <bean id="person4" class="com.spring4.learn.poio.Person">
+        <constructor-arg value="Jerry"></constructor-arg>
+        <constructor-arg value="25"></constructor-arg>
+        
+        <!-- 先引用， 然后赋值 -->
+        <constructor-arg ref="car"></constructor-arg>
+        <!-- 为级联属性赋值 要有set方法 Car.setMaxSpeed() -->
+        <!-- 注意：属性需要先初始化后(引用或内部Bean定义), 才可以为级联属性赋值 否则会用异常 -->
+        <property name="car.maxSpeed" value="230"></property>
+    </bean>
+
+</beans>
