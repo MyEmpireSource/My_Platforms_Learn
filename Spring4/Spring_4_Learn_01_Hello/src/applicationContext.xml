@@ -28,7 +28,7 @@
     <!--
                         配置 Bean
              id: 标识容器中的Bean, 值 唯一
-          class: bean 的全类名, 通过反射方式在 IOC 容器中创建 Bean, 所以要求Bean中必须有无参的构造器
+          class: bean 的全类名, 通过反射方式在 IOC 容器中创建 Bean, 所以要求Bean中必须有无参的构造器(如果类中有构造器方法, 需要添加一个无参的构造器)
      -->
     <bean id="helloWorld" class="com.spring4.learn.HelloWorld">
         <property name="info2" value="Spring4" /> <!-- name 的值与 HelloWorld 对象属性 的set方法对应-->

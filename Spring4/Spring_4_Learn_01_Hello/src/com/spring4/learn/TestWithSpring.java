@@ -21,10 +21,15 @@ public class TestWithSpring {
 		//ClassPathXmlApplicationContext: 是ApplicationContext接口实现类 ， 该实现类从类路径下加载配置文件
 		ApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
-		// 2, 从 IOC 容器中获取 Bean 实例
+		// 2, 从 IOC 容器中获取 Bean 实例(利用id 对应到IOC容器中的Bean)
 		HelloWorld hello = (HelloWorld) cxt.getBean("helloWorld");
 		
 		// 3, 调用对象方法
 		hello.sayHello();
+		
+		//--------------------------------
+		//利用类型返回 IOC 容器中的对象 ， 但要求IOC容器中只有一个该类型的Bean
+		//要求在配置文件中， HelloWorld.class类型的只有一个配置
+		//HelloWorld hello3 = cxt.getBean(HelloWorld.class);
 	}
 }
