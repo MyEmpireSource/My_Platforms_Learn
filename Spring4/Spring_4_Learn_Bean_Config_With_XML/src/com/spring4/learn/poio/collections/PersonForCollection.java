@@ -5,15 +5,12 @@ import java.util.List;
 /**
  * 
  * @Package: com.spring4.learn.poio
- * @ClassName: Person.java
+ * @ClassName: PersonForCollection.java
  *
- * @Description: xml配置学习(applicationContext.xml)
- * 				  配置集合属性 (id = "person5")
+ * @Description: xml配置学习(applicationContext_collections.xml)
+ * 				  配置Map集合属性 (id = "person6")
  * 
- * 				 在 Spring中可以通过一组内置的 xml 标签(例如: <list>, <set> 或 <map>) 来配置集合属性
- * 				 配置 java.util.List 类型的属性, 需要指定 <list>  标签
- * 				 数组的定义和 List 一样, 都使用 <list>
- * 				 配置 java.util.Set 需要使用 <set> 标签
+ * 				 
  * 
  * @Company:
  * @Author: 李立  
@@ -28,12 +25,15 @@ public class PersonForCollection {
 	
 	private List<CarForCollection> carList;
 	
+	private List<String> hobbyList; //爱好
+	
 	public PersonForCollection() {}
 
-	public PersonForCollection(String name, int age, List<CarForCollection> carList) {
+	public PersonForCollection(String name, int age, List<CarForCollection> carList, List<String> hobbyList) {
 		this.name = name;
 		this.age = age;
 		this.carList = carList;
+		this.hobbyList = hobbyList;
 	}
 
 	public String getName() {
@@ -60,8 +60,17 @@ public class PersonForCollection {
 		this.carList = carList;
 	}
 
+	public List<String> getHobbyList() {
+		return hobbyList;
+	}
+
+	public void setHobbyList(List<String> hobbyList) {
+		this.hobbyList = hobbyList;
+	}
+
 	@Override
 	public String toString() {
-		return "PersonForCollection [name=" + name + ", age=" + age + ", carList=" + carList + "]";
+		return "PersonForCollection [name=" + name + ", age=" + age + ", carList=" + carList + ", hobbyList="
+				+ hobbyList + "]";
 	}
 }

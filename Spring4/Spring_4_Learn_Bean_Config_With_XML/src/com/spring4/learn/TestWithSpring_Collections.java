@@ -3,7 +3,10 @@ package com.spring4.learn;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.spring4.learn.poio.collections.DataSourceForProperties;
 import com.spring4.learn.poio.collections.PersonForCollection;
+import com.spring4.learn.poio.collections.PersonForMap;
+import com.spring4.learn.poio.collections.PersonForUtil;
 
 
 public class TestWithSpring_Collections {
@@ -36,6 +39,19 @@ public class TestWithSpring_Collections {
 		
 		PersonForCollection person = (PersonForCollection) cxt.getBean("person5");
 		System.out.println(person);
+		
+		PersonForMap personMap = (PersonForMap) cxt.getBean("person6");
+		System.out.println(personMap);
+		
+		DataSourceForProperties ds = (DataSourceForProperties) cxt.getBean("dataSource");
+		System.out.println(ds);
+		
+		PersonForUtil personUtil = (PersonForUtil) cxt.getBean("person7");
+		System.out.println(personUtil);
+		
+		personUtil = (PersonForUtil) cxt.getBean("person8");
+		System.out.println(personUtil);
+		
 	}
 	
 }
