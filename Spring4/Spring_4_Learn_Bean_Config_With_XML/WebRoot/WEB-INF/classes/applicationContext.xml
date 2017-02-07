@@ -85,5 +85,10 @@
     <!-- 引入配置集合属性定义的Spring配置文件  -->
     <import resource="classpath:/applicationContext_bean_relation.xml" />
 <!-- ↑↑↑↑↑↑↑↑↑↑ 测试Bean之间配置关系  END ↑↑↑↑↑↑↑↑↑↑  -->
+
+<!-- ↓↓↓↓↓↓↓↓↓↓ 测试Bean作用域配置  START ↓↓↓↓↓↓↓↓↓↓  -->
+    <!-- 引入配置集合属性定义的Spring配置文件  -->
+    <import resource="classpath:/applicationContext_bean_scope.xml" />
+<!-- ↑↑↑↑↑↑↑↑↑↑ 测试Bean作用域配置  END ↑↑↑↑↑↑↑↑↑↑  -->
     
 </beans>

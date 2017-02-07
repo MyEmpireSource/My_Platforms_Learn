@@ -12,6 +12,7 @@
 		<config>src/applicationContext_bean_references.xml</config>
 		<config>src/applicationContexr_autowire.xml</config>
 		<config>src/applicationContext_bean_relation.xml</config>
+		<config>src/applicationContext_bean_scope.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
