@@ -17,6 +17,10 @@
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
+	<!-- ############################################ -->
+	<!-- Spring 与属性 Bean之间的引用关系 配置 -->
+	<!-- ############################################ -->
+
     <!-- ↓↓↓↓↓↓↓↓↓↓ 与属性 Bean之间的引用关系 START ↓↓↓↓↓↓↓↓↓↓  -->
 
     <!-- 与属性 Bean之间的引用关系  -->

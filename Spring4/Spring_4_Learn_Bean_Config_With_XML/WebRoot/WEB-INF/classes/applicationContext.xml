@@ -24,6 +24,10 @@
            http://www.springframework.org/schema/util 
            http://www.springframework.org/schema/util/spring-util-4.3.xsd" >
 
+	<!-- ############################################ -->
+	<!-- Spring 基本配置 -->
+	<!-- ############################################ -->
+
     <!--
                         配置 Bean
              id: 标识容器中的Bean, 值 唯一
@@ -70,6 +74,16 @@
 <!-- ↓↓↓↓↓↓↓↓↓↓ 测试如何配置集合属性  START ↓↓↓↓↓↓↓↓↓↓  -->
     <!-- 引入配置集合属性定义的Spring配置文件  -->
     <import resource="classpath:/applicationContext_collections.xml" />
-<!-- ↑↑↑↑↑↑↑↑↑↑ 测试如何配置集合属性  START ↑↑↑↑↑↑↑↑↑↑  -->
+<!-- ↑↑↑↑↑↑↑↑↑↑ 测试如何配置集合属性  END ↑↑↑↑↑↑↑↑↑↑  -->
+
+<!-- ↓↓↓↓↓↓↓↓↓↓ 测试如何配置自动装载  START ↓↓↓↓↓↓↓↓↓↓  -->
+    <!-- 引入配置集合属性定义的Spring配置文件  -->
+    <import resource="classpath:/applicationContexr_autowire.xml" />
+<!-- ↑↑↑↑↑↑↑↑↑↑ 测试如何配置自动装载  END ↑↑↑↑↑↑↑↑↑↑  -->
+
+<!-- ↓↓↓↓↓↓↓↓↓↓ 测试Bean之间配置关系  START ↓↓↓↓↓↓↓↓↓↓  -->
+    <!-- 引入配置集合属性定义的Spring配置文件  -->
+    <import resource="classpath:/applicationContext_bean_relation.xml" />
+<!-- ↑↑↑↑↑↑↑↑↑↑ 测试Bean之间配置关系  END ↑↑↑↑↑↑↑↑↑↑  -->
     
 </beans>

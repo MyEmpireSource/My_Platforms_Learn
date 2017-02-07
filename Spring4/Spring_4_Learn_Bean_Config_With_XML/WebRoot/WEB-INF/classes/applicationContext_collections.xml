@@ -17,6 +17,10 @@
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
+	<!-- ############################################ -->
+	<!-- Spring 配置集合属性 配置 -->
+	<!-- ############################################ -->
+
     <!-- ↓↓↓↓↓↓↓↓↓↓ 测试如何配置集合属性  START ↓↓↓↓↓↓↓↓↓↓  -->
     <!-- 通过构造方法来配置Bean 的属性 -->
     <bean id="car3" class="com.spring4.learn.poio.collections.CarForCollection">

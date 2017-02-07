@@ -5,7 +5,7 @@ package com.spring4.learn.poio;
  * @Package: com.spring4.learn.poio
  * @ClassName: Person.java
  *
- * @Description: xml配置学习(applicationContext.xml)
+ * @Description: xml配置学习(applicationContext.xml, applicationContext_bean_references.xml)
  * 				 学习Bean之间引用的配置(id="person" | id="person2" | id="person3" | id="person4")
  * 
  * @Company:

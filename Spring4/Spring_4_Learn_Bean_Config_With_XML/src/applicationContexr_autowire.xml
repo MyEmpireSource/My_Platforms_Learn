@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- ############################################ -->
+	<!-- Spring 自动装载 配置 -->
+	<!-- ############################################ -->
+
+    <!-- ↓↓↓↓↓↓↓↓↓↓ 自动装载  START ↓↓↓↓↓↓↓↓↓↓  -->
+	
+	
+	<bean id="address1" class="com.spring4.learn.poio.autowire.Address" 
+			p:city="BeiJing" p:street="HuiLongGuan" />
+		
+	<bean id="carForAutowire1" class="com.spring4.learn.poio.autowire.CarForAutowire" 
+			p:brand="Audi" p:corp="ShangHai" p:price="200000" p:maxSpeed="285" />
+			
+	<bean id="person9" class="com.spring4.learn.poio.autowire.PersonForAutowire" 
+			p:name="Tom" p:carForAutowire-ref="carForAutowire1" p:address-ref="address1" />
+	
+	
+	
+	
+	<bean id="address" class="com.spring4.learn.poio.autowire.Address" 
+			p:city="SHANGHAI" p:street="HuiLongGuan" />
+		
+	<bean id="carForAutowire" class="com.spring4.learn.poio.autowire.CarForAutowire" 
+			p:brand="BAOMA" p:corp="ShangHai" p:price="200000" p:maxSpeed="285" />
+	
+	<!-- 可以使用 autowire 属性指定自动装配的配置 -->
+	<!-- 
+		autowire="byName" 根据配置好的Bean的名字(ID)和 当前Bean的setter 风格的属性名自动装配，
+						      若有匹配的, 则自动装配，无则不装配
+		autowire="byType" 根据配置好的Bean的名字(ID)和当前	Bean 的属性类型进行自动装配
+	-->
+	<bean id="person10" class="com.spring4.learn.poio.autowire.PersonForAutowire" 
+			p:name="Tom" autowire="byName" />	
+	
+	<!-- autowire="byType" 若IOC容器中有1个以上的类型匹配, 则会报异常 -->
+	<!--
+	<bean id="person11" class="com.spring4.learn.poio.autowire.PersonForAutowire" 
+			p:name="Tom水电费" autowire="byType" />	
+	 -->		
+	 
+	 <!-- ↑↑↑↑↑↑↑↑↑↑ 自动装载  END ↑↑↑↑↑↑↑↑↑↑  -->
+
+</beans>

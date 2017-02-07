@@ -5,7 +5,7 @@ package com.spring4.learn.poio;
  * @Package: com.spring4.learn.poio
  * @ClassName: Car.java
  *
- * @Description: xml配置学习(applicationContext.xml)
+ * @Description: xml配置学习(applicationContext.xml, applicationContext_bean_references.xml)
  * 				   学习 通过构造方法来配置Bean 的属性(id="car" | id="car2" )
  * 
  * @Company:
