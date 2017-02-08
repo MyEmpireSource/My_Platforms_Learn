@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+		<!-- ############################################ -->
+		<!-- Spring 使用外部属性文件 配置 -->
+		<!-- ############################################ -->
+		
+		<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 使用外部属性文件 START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+		
+		<!-- 普通配置 -->
+		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+			<property name="user" value="root"></property>
+			<property name="password" value="root167"></property>
+			<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+			<property name="jdbcUrl" value="jdbc:mysql:///test"></property>
+			
+		</bean>
+		
+<!-- ↓↓↓↓↓↓↓↓↓↓ 使用外部配置文件 START ↓↓↓↓↓↓↓↓↓↓ -->
+
+		<!-- 导入属性文件 -->
+		<context:property-placeholder location="classpath:db.properties"/>
+		
+		<!-- 使用外部化属性文件的属性 -->				
+		<bean id="dataSource_properties" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+			<property name="user" value="${user}"></property>
+			<property name="password" value="${pd}"></property>
+			<property name="driverClass" value="${driverClass}"></property>
+			<property name="jdbcUrl" value="${jdbcUrl}"></property>
+			
+		</bean>
+<!-- ↑↑↑↑↑↑↑↑↑↑ 使用外部配置文件  END   ↑↑↑↑↑↑↑↑↑↑ -->
+		
+		<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  使用外部属性文件    END ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
+
+</beans>

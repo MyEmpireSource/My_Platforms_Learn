@@ -14,5 +14,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring_4.3.0_At_Least"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MySQL_5"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring_4_DB"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

@@ -90,5 +90,10 @@
     <!-- 引入配置集合属性定义的Spring配置文件  -->
     <import resource="classpath:/applicationContext_bean_scope.xml" />
 <!-- ↑↑↑↑↑↑↑↑↑↑ 测试Bean作用域配置  END ↑↑↑↑↑↑↑↑↑↑  -->
+
+<!-- ↓↓↓↓↓↓↓↓↓↓ 使用外部属性文件 配置  START ↓↓↓↓↓↓↓↓↓↓  -->
+    <!-- 引入 使用外部属性文件 配置文件  -->
+    <import resource="classpath:/applicationContext_properties.xml" />
+<!-- ↑↑↑↑↑↑↑↑↑↑ 使用外部属性文件配置  END ↑↑↑↑↑↑↑↑↑↑  -->
     
 </beans>

@@ -1,7 +1,2 @@
 /com/
-/applicationContexr_autowire.xml
-/applicationContext_bean-relation.xml
-/applicationContext_bean_relation.xml
-/foram
-/Format
-/applicationContext_bean_scope.xml
+/db.properties

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+	<!-- ############################################ -->
+	<!-- Spring Bean之间的关系 配置 -->
+	<!-- Bean之间的关系(继承, 依赖), 是指Spring配置上的继承与依赖, 非面向对象语言的继承依赖关系 -->
+	<!-- ############################################ -->
+
+	<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Bean之间的关系 START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+	
+<!-- ↓↓↓↓↓↓↓↓↓↓ 普通配置 Start ↓↓↓↓↓↓↓↓↓↓ -->
+	<bean id="address_relation_1" class="com.spring4.learn.poio.relation.AddressForRelation">
+		<property name="city">
+			<value>BeiJing</value>
+		</property>
+		
+		<property name="street" value="WuDaoKou" />
+	</bean>
+	
+	<bean id="address_relation_2" class="com.spring4.learn.poio.relation.AddressForRelation" 
+		  p:city="BeiJing" p:street="DaZhongSi" />
+<!-- ↑↑↑↑↑↑↑↑↑  普通配置    END ↑↑↑↑↑↑↑↑↑  -->
+
+
+<!-- ↓↓↓↓↓↓↓↓↓↓ 继承配置 Start ↓↓↓↓↓↓↓↓↓↓ -->	
+	<bean id="address_relation_3" class="com.spring4.learn.poio.relation.AddressForRelation">
+		<property name="city">
+			<value>KunMing</value>
+		</property>
+		
+		<property name="street" value="WuJingWu" />
+	</bean>
+	
+	<!-- Bean的配置继承: 使用Bean的 parent 属性指定继承哪个 Bean的配置   -->
+	<!-- 并不是 <bean> 元素里的所有属性都会被继承. 比如: autowire, abstract -->
+	<bean id="address_relation_4" parent="address_relation_3" p:street="JianSheLu" />
+	
+	<!-- 父 Bean 可以作为配置模板, 也可以作为 Bean 实例. --> 
+	<!-- 若只想把父 Bean 作为模板, 可以设置 <bean> 的abstract 属性为 true, 这样 Spring 将不会实例化这个 Bean -->
+	<!-- 抽象Bean： <bean> abstract属性值为 true. 这样的Bean不能被IOC容器实例化, 只用来做模板(父Bean)被继承配置 -->
+	<!-- 若某个Bean的 class属性没有指定, 则它必须是一个抽象Bean -->
+	
+	<bean id="address_relation" class="com.spring4.learn.poio.relation.AddressForRelation" abstract="true">
+		<property name="city">
+			<value>KunMing……</value>
+		</property>
+		
+		<property name="street" value="WuJingWu" />
+	</bean>
+	
+	<!-- Bean的配置继承: 使用Bean的 parent 属性指定继承哪个 Bean的配置   -->
+	<bean id="address_relation_5" parent="address_relation" p:street="JianSheLu" />
+	
+<!-- ↑↑↑↑↑↑↑↑↑  继承配置    END ↑↑↑↑↑↑↑↑↑  -->	
+
+
+<!-- ↓↓↓↓↓↓↓↓↓↓ 依赖关系配置 Start ↓↓↓↓↓↓↓↓↓↓ -->	
+	
+	<!-- 要求在配置Person时, 必须有一个关联的Car. 即Person这个Bean依赖于Car的这个Bean -->
+	<bean id="persion_relation" class="com.spring4.learn.poio.relation.PersonForRelation" 
+		  p:name="Tom_For_Realtion" p:address-ref="address_relation_5" depends-on="car_relation" />
+	
+	<bean id="car_relation" class="com.spring4.learn.poio.relation.CarForRelation" 
+			p:brand="Audi" p:corp="ShangHai" p:price="200000" p:maxSpeed="285" />	  
+		  
+
+<!-- ↑↑↑↑↑↑↑↑↑  依赖关系配置    END ↑↑↑↑↑↑↑↑↑  -->
+	
+	
+	<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  Bean之间的关系    END ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
+	
+
+</beans>
