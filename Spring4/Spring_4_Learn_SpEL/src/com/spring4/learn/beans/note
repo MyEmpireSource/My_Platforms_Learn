@@ -1,0 +1,77 @@
+Spring 表达式语言（简称SpEL）：是一个支持运行时查询和操作对象图的强大的表达式语言。
+
+语法类似于 EL：SpEL 使用 #{…} 作为定界符，所有在大框号中的字符都将被认为是 SpEL
+
+SpEL 为 bean 的属性进行动态赋值提供了便利
+
+通过 SpEL 可以实现：
+	通过 bean 的 id 对 bean 进行引用
+	调用方法以及引用对象中的属性
+	计算表达式的值
+	正则表达式的匹配
+	
+SpEL表达式使用：
+	字面量的表示：
+		整数：<property name="count" value="#{5}"/>
+		小数：<property name="frequency" value="#{89.7}"/>
+		科学计数法：<property name="capacity" value="#{1e4}"/>
+		String可以使用单引号或者双引号作为字符串的定界符号：<property name=“name” value="#{'Chuck'}"/> 或 <property name='name' value='#{"Chuck"}'/>
+		Boolean：<property name="enabled" value="#{false}"/>	
+
+	引用其他对象：
+		通过 value 属性和 SpEL 配置Bean之间关系
+		<!-- 使用 SpEL 来引用其它Bean  -->
+		<property name="carForSpELOfMy" value="#{carForSpEL}"></property>
+		
+	引用其它对象的属性:
+		<!-- 使用 SpEL 来引用其它Bean的属性  -->
+		<property name="city" value="#{address_spel.city}"></property>
+		
+	调用其它方法，还可以链式操作:
+		<!-- 方法的连缀 -->
+		<property name="city" value="#{address_spel.toString().toUpperCase()}"></property>
+		
+	调用静态方法或静态属性
+		通过 T() 调用一个类的静态方法，它将返回一个 Class Object，然后再调用相应的方法或属性： 
+		<property name="pi" value="#{T(java.lang.Math).PI}"></property>	
+
+	支持的运算符号
+		算数运算符：+, -, *, /, %, ^：
+				<property name="adjustedAmount" value="#{counter.total + 42}"></property>
+				<property name="adjustedAmount" value="#{counter.total - 42}"></property>
+				<property name="circumference" value="#{2 * T(java.lang.Math).PI * circle.radius}"></property>
+				<property name="average" value="#{counter.total / counter.count}"></property>
+				<property name="remainder" value="#{counter.total % counter.count}"></property>
+				<property name="area" value="#{T(java.lang.Math).PI * circle.radius ^ 2}"></property>
+		加号还可以用作字符串连接：
+				<constructor-arg value="#{performer.firstName + ' ' + performer.lastName}" type="java.lang.String" index="0"></constructor-arg>
+		比较运算符： <, >, ==, <=, >=, lt, gt, eq, le, ge
+				<property name="equal" value="#{counter.total == 100}"></property>	
+				<property name="hasCapacity" value="#{counter.total le 100000}"></property>	 
+		逻辑运算符号： and, or, not, !
+				<property name="largeCircle" value="#{shape.kind == 'circle' and shape.perimeter gt 10000}"></property>
+				<property name="outOfStock" value="#{!product.available}"></property>
+				<property name="outOfStock" value="#{not product.available}"></property>	
+		if-else 运算符：? : (ternary), ? : (Elvis)
+				<constructor-arg value="#{songSelector.selectSong()  == 'Jingle' ? piano : 'Jingle'}" ></constructor-arg>
+		if-else 的变体
+				<constructor-arg value="#{kenny.song ?: 'Greens'}" ></constructor-arg>
+		正则表达式：matches 
+				<constructor-arg value="#{admin.email matches '/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/'}" ></constructor-arg>
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	

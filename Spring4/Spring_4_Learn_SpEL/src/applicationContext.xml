@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+
+	<!-- ############################################ -->
+	<!-- Spring SpEL 学习 配置 -->
+	<!-- ############################################ -->
+	
+	<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ SpEL START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+	
+	<bean id="address_spel" class="com.spring4.learn.beans.Address">
+		<!-- 使用 SpEL为属性赋一个字面值 -->
+		<property name="city" value="#{'KunMing'}"></property>
+		<property name="street" value="JianSheLu"></property>
+	</bean>
+	
+	<bean id="carForSpEL" class="com.spring4.learn.beans.CarForSpEL">
+		<!-- 使用构造器属性值可以指定参数的位置和参数类型, 以区分重载的构造器  -->
+        <constructor-arg value="Baoma" type="java.lang.String" index="0"></constructor-arg> 
+        
+        <constructor-arg type="java.lang.String" index="1">
+            <!-- 注入的值可以在属性中定义, 也可以在 value 子节点中定义  -->
+            <!-- 若字面值中包含特殊字符, 可以用<![CDATA[]]> 把字面值包裹起来 -->
+            <value><![CDATA[<ShangHai^>_#{T(java.lang.Math).PI * 80}]]></value> 
+        </constructor-arg>
+        
+        <constructor-arg type="double" index="2">
+            <!-- 注入的值可以在属性中定义, 也可以在子节点中定义  -->
+            <value>350000</value>
+        </constructor-arg>
+        
+        <constructor-arg type="int" index="3" value="#{356}"></constructor-arg>
+        
+         <constructor-arg type="double" index="4">
+         	<!-- 使用 SpEL引用类的静态属性  -->
+         	<value>#{T(java.lang.Math).PI * 80}</value>
+         </constructor-arg>
+	</bean>
+	
+	<bean id="personForSpEL" class="com.spring4.learn.beans.PersonForSpEL">
+	
+		<!-- 使用 SpEL 来引用其它Bean  -->
+		<property name="carForSpELOfMy" value="#{carForSpEL}"></property>
+		
+		<!-- 使用 SpEL 来引用其它Bean的属性  -->
+		<property name="city" value="#{address_spel.city}"></property>
+		
+		<!-- 在SpEL中使用运算符  -->
+		<property name="info" value="#{carForSpEL.price > 300000 ? '中产' : '普通'}"></property>
+		<!-- Error 其它Bean
+		<property name="info" value="#{carForSpELOfMy.price > 300000 ? '中产' : '普通'}"></property>
+		 -->
+		<property name="name" value="Tom"></property>
+	</bean>
+	
+	<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  SpEL  END ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
+
+
+</beans>
