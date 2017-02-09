@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- ############################################ -->
+	<!-- Spring 管理 Bean 的生命周期 配置 -->
+	<!-- ############################################ -->
+
+	<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Spring 管理 Bean 的生命周期 START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+	
+	<!-- 在 Bean 的声明里设置 init-method 和 destroy-method 属性, 为 Bean 指定初始化和销毁方法. -->
+	<bean id="carForCycle" class="com.spring4.learn.bean.cycle.CarForCycle" 
+		  init-method="initOfCar" destroy-method="carDestory" >
+		<property name="brand" value="Audio"></property>
+	</bean>
+	
+	<!-- 配置Bean的后置处理器 -->
+	<!-- Bean后置处理器不需要指定Id, Spring IOC容器会自动识别 是一个Bean后置处理器(BeanPostProcessor)-->
+	<!--
+		实现 org.springframework.beans.factory.config.BeanPostProcessor 接口
+		并具体提供方法: 
+			(init-method调用之前被调用)
+				BeanPostProcessor.postProcessBeforeInitialization(Object bean, String beanName) throws BeansException
+ 			(init-method调用之后被调用)
+ 					BeanPostProcessor.postProcessBeforeInitialization(Object bean, String beanName) throws BeansException
+		的实现.
+			方法参数:
+				bean : bean 实例本身
+				beanName : IOC容器中配置的Bean的名字
+				return : 是实际上返回给用户的那个Bean, 
+				注意 : 可以在以上两个方法中修改返回的Bean, 甚至返回一个新的Bean
+	 -->
+	<bean class="com.spring4.learn.bean.cycle.MyBeanPostProcessor"></bean>
+	<bean class="com.spring4.learn.bean.cycle.OtherBeanPostProcessor"></bean>
+	
+	<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  Spring 管理 Bean 的生命周期    END ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
+
+</beans>
