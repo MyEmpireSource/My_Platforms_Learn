@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- ############################################ -->
+	<!-- Spring 通过静态工厂方法来配置Bean & 通过调用实例工厂方法创建 Bean 配置 -->
+	<!-- ############################################ -->
+
+	<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 通过静态工厂方法来配置Bean START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+	
+	<!-- 通过静态工厂方法来配置Bean, 注意不是配置静态工厂方法实例, 而是配置Bean实例 -->
+	<!-- 
+		class 属性 : 指向静态工厂方法的全类名
+		factory-method : 指向静态工厂方法的方法名
+		<constructor-arg> : 如果工厂方法需要传入参数, 则使用<constructor-arg>来配置参数
+	 -->
+	<bean id="carFactory" class="com.spring4.learn.bean.factory.StaticCarFactory" 
+		  factory-method="getCar">
+		  
+		<constructor-arg value="Audi"></constructor-arg>
+		  
+	</bean>
+	
+	<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  通过静态工厂方法来配置Bean  END ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
+	
+	<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 通过调用实例工厂方法创建 Beann START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+	
+	<!-- 配置工厂的实例 -->
+	<bean id="instanceCarFactory" class="com.spring4.learn.bean.instance.factory.InstanceCarFactory"></bean>
+	
+	<!-- 通过实例工厂方法来配置Bean -->
+	<!-- 
+		factory-bean 属性 : 指向实例工厂方法的Bean
+		factory-method : 指向工厂方法获取Bean的方法名
+		<constructor-arg> : 如果工厂方法需要传入参数, 则使用<constructor-arg>来配置参数
+	 -->
+	<bean id="carForInstanceFactory" factory-bean="instanceCarFactory" factory-method="getCar">
+		<!-- SpEL表达式 -->
+		<constructor-arg value="#{'Ford'.toUpperCase()}"></constructor-arg>
+	</bean>
+	
+	<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  通过调用实例工厂方法创建 Bean  END ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
+
+</beans>
