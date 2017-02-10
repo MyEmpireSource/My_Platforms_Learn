@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- ############################################ -->
-	<!-- Spring 通过静态工厂方法来配置Bean & 通过调用实例工厂方法创建 Bean 配置 -->
+	<!-- Spring 通过静态工厂方法来配置Bean & 通过调用实例工厂方法创建 Bean & 通过 FactoryBean(org.springframework.beans.factory.FactoryBean)来创建Bean 配置 -->
 	<!-- ############################################ -->
 
 	<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 通过静态工厂方法来配置Bean START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
@@ -24,7 +24,9 @@
 	
 	<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  通过静态工厂方法来配置Bean  END ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
 	
-	<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 通过调用实例工厂方法创建 Beann START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+	
+	
+	<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 通过调用实例工厂方法创建 Bean START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
 	
 	<!-- 配置工厂的实例 -->
 	<bean id="instanceCarFactory" class="com.spring4.learn.bean.instance.factory.InstanceCarFactory"></bean>
@@ -41,5 +43,27 @@
 	</bean>
 	
 	<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  通过调用实例工厂方法创建 Bean  END ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
+	
+	
+	
+	<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 通过 FactoryBean(org.springframework.beans.factory.FactoryBean)来创建Bean START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+	
+	<!-- 
+		通过 FactoryBean 来配置Bean的实例
+		class : 指向FactoryBean的全类名
+		<property> : 配置FactoryBean的属性
+		
+		但实际返回的实例却是 FactoryBean.getObject()方法返回的实例
+		返回的Bean是否是单实例由FactoryBean.isSingleton() 方法返回值确定
+	 -->
+	<bean id="factoryForSingleCar" class="com.spring4.learn.bean.factorybean.FactoryBeanForSingleCar">
+		<property name="brand">
+			<value>#{'bmw'.toUpperCase()}</value>
+		</property>
+	</bean>
+	
+	<bean id="factoryForNotSingleCar" class="com.spring4.learn.bean.factorybean.FactoryBeanForNotSingleCar">
+		<property name="brand" value="#{'bmw'.toUpperCase()}"></property>
+	</bean>
 
 </beans>
