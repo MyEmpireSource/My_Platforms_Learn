@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- ############################################ -->
+	<!-- Spring 通过注解配置Bean  配置 -->
+	<!-- ############################################ -->
+	
+	<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Spring 通过注解配置Bean START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+	
+	<!-- 指定 Spring IOC 容器扫描的包 -->
+	<!-- 可以通过 resource-pattern 指定扫描的资源 -->
+	<!-- 
+	<context:component-scan 
+		base-package="com.spring4.learn.annotation" 
+		
+		resource-pattern="repository/impl/*.class"
+		
+	>
+	 -->
+	
+<!-- <context:exclude-filter> 子节点指定排除 满足指定表达式的组件 --> 
+	<!-- 
+	<context:component-scan base-package="com.spring4.learn.annotation" >
+		
+		<!- - 
+			该类型(type='annotation')采用目标类是否标注了某个注解进行过滤  
+			过滤掉标注了 @Repository (org.springframework.stereotype.Repository) 的类 
+		- ->  
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+		
+		<!- - 
+			该类型(type='assignable')采用目标类是否继承或扩展自某个类来进行过滤  
+			过滤掉标注了com.spring4.learn.annotation.repository.UserRepository 的实现类 
+		- -> 
+		<context:exclude-filter type="assignable" expression="com.spring4.learn.annotation.repository.UserRepository"/>
+		
+	</context:component-scan>
+	 -->
+	
+	<!-- <context:include-filter> 子节点指定包含  满足指定表达式的组件 该子节点需要与 use-default-filters 属性配合使用-->
+	<!--
+		use-default-filters="true" 默认要扫描 @Component, @Controller, @Service, @Repository 外加 <context:include-filter> 指定的
+		use-default-filters="false" 取消默认扫描 只扫描<context:include-filter> 指定的
+	 -->
+<!-- 
+	<context:component-scan base-package="com.spring4.learn.annotation" 
+		use-default-filters="false"
+	>
+		<!- - 
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+		 - ->
+		<context:include-filter type="assignable" expression="com.spring4.learn.annotation.repository.UserRepository"/>
+	</context:component-scan>
+	  -->	 	
+	  
+	  
+	  
+	<context:component-scan base-package="com.spring4.learn.annotation" />
+	
+	
+	<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑   Spring 通过注解配置Bean END ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
+
+</beans>
