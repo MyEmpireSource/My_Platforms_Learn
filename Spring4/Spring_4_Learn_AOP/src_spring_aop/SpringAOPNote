@@ -1,0 +1,52 @@
+# 引入 Spring AOP 支持所需操作
+	1, 加入JAR包
+		//AOP功能需要额外引入的包
+		spring-aop-4.3.0.RC2.jar
+		com.springsource.org.aopalliance-1.0.0.jar
+		com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar
+		spring-aspects-4.3.0.RC2.jar
+		
+		//Spring基本JAR包(Spring4支持所需最基本的包)
+		com.springsource.org.apache.commons.logging-1.1.1.jar
+		spring-beans-4.3.0.RELEASE.jar
+		spring-context-4.3.0.RELEASE.jar
+		spring-core-4.3.0.RELEASE.jar
+		spring-expression-4.3.0.RELEASE.jar
+	
+	2, 在配置文件(applicatinContext.xml)中加入AOP的命名空间(aop)
+	
+	3, 基于注解的配置
+		1, 在配置文件中额外加入如下配置
+				<!-- 使 AspectJ 注解起作用 :自动为匹配的类生成代理对象  -->
+				<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+		2, 把横切关注点的代码抽象到切面的类中(声明为切面[需要把类放入到IOC容器 (@Component), 再声明为一个切面 (@Aspect)])
+				i,  切面首先是一个IOC容器中的Bean(@Component)
+				ii, 然后声明为一个切面 (@Aspect)
+		3, 在类中声明各种通知
+				AspectJ 支持 5 种类型的通知注解: 
+					@Before: 前置通知, 在方法执行之前执行
+					@After: 后置通知, 在方法执行之后执行 
+					@AfterRunning: 返回通知, 在方法返回结果之后执行
+					@AfterThrowing: 异常通知, 在方法抛出异常之后
+					@Around: 环绕通知, 围绕着方法执行
+				声明各种通知所需操作(以@Before为例): 
+					先声明一个方法
+					在方法前面加入 @Before 注解 利用方法签名编写 AspectJ 切入点表达式
+						AspectJ 切入点表达式 可以通过操作符 &&, ||, ! 结合起来.
+					可以在通知方法中声明一个类型为 JoinPoint 的参数. 然后就能访问链接细节. 如方法名称和参数值
+					eg : 
+					
+						@Before("execution (int com.spring4.learn.aop.service.ArithmeticCalculator.*(int, int))")
+						public void beforeMethod(JoinPoint joinPoint) {
+							
+							
+							String className = joinPoint.getSignature().getDeclaringType().getName();
+							String methodName = joinPoint.getSignature().getName();
+							
+							//参数
+							List<Object> args = Arrays.asList(joinPoint.getArgs());
+							
+							System.out.println("The " + className + "." + methodName + "() method beginng with " + args + "  ... ...");
+						}
+			
+		
