@@ -38,6 +38,9 @@ public class TestWithSpring_AOP {
 		System.out.println();
 		cal.div(6, -1);
 		
+		System.out.println();
+		cal.div(6, 0);
+		
 		
 	}
 
