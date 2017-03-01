@@ -32,11 +32,11 @@ public class TestWithSpring_AOP {
 		ArithmeticCalculator cal = (ArithmeticCalculator) cxt.getBean("arithmeticCalculator");
 		
 		// 3, 使用Bean
-		cal.add(1, 2);
+		cal.add(1, 3);
 		System.out.println();
 		cal.div(6, 2);
 		System.out.println();
-		cal.div(6, 0);
+		cal.div(6, -1);
 		
 		
 	}

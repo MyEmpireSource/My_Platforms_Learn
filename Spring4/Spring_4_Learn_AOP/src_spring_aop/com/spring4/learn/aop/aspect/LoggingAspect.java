@@ -1,4 +1,4 @@
-package com.spring4.learn.aop.scpect;
+package com.spring4.learn.aop.aspect;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +13,7 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -41,12 +42,15 @@ import org.springframework.stereotype.Component;
  * 
  * 				 可以在通知方法中声明一个类型为 JoinPoint 的参数. 然后就能访问链接细节. 如方法名称和参数值
  * 
+ * 				可以使用 @Order 注解指定切面的优先级, 值越小, 优先级越高
+ * 
  * @Company:
  * @Author: ZCX  
  * @CreateDate: 2017年2月24日 下午3:03:10
  * @UpdateDate: 2017年2月24日 下午3:03:10
  * @Version: V1.0
  */
+@Order(2)
 @Aspect
 @Component
 public class LoggingAspect {
