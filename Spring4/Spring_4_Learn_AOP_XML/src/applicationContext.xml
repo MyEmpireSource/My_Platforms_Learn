@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- ############################################ -->
+	<!-- Spring AOP  配置 -->
+	<!-- ############################################ -->
+	
+	<!-- 
+		<context:component-scan base-package="com.spring4.learn.aop.service,com.spring4.learn.aop.aspect"></context:component-scan>
+	 -->
+	
+<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 配置 Bean START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+
+	<!-- 配置 Bean -->
+	<bean id="arithmeticCalculator" class="com.spring4.learn.aop.service.impl.ArithmeticCalculatorImpl" scope="prototype"></bean>
+	
+	<!-- 配置切面 Bean -->
+	<bean id="loggingAspect" class="com.spring4.learn.aop.aspect.LoggingAspect"></bean>
+	<bean id="vlidationAspect" class="com.spring4.learn.aop.aspect.VlidationAspect"></bean>
+
+<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  配置 Bean  END ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->	
+
+<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 配置 AOP START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+	
+	<aop:config>
+		<!-- 1, 配置切点表达式 -->
+		<aop:pointcut id="declareJointPointExpressionForAdd" expression="execution (int com.spring4.learn.aop.service.ArithmeticCalculator.add(int, int))"/>
+		<aop:pointcut id="declareJointPointExpressionForAll" expression="execution (int com.spring4.learn.aop.service.ArithmeticCalculator.*(..))"/>
+		<aop:pointcut id="declareJointPointExpressionForAfterMethodReturning" expression="execution (int com.spring4.learn.aop.service.ArithmeticCalculator.*(int, int))"/>
+		<aop:pointcut id="declareJointPointExpressionForAfterMethodThrowing" expression="execution (int com.spring4.learn.aop.service.ArithmeticCalculator.*(int, int))"/>
+		
+		<!-- 2, 配置切面及通知 -->
+		<aop:aspect ref="loggingAspect" order="2">
+			<aop:before method="beforeMethod" pointcut-ref="declareJointPointExpressionForAdd"/>
+			<aop:before method="beforeMethod" pointcut-ref="declareJointPointExpressionForAll"/>
+			
+			<aop:after method="afterMethod" pointcut-ref="declareJointPointExpressionForAll"/>
+			
+			<aop:after-returning method="afterMethodReturning" pointcut-ref="declareJointPointExpressionForAfterMethodReturning" returning="returnResult"/>
+			
+			<aop:after-throwing method="afterMethodThrowing" pointcut-ref="declareJointPointExpressionForAfterMethodThrowing" throwing="ex"/>
+			<aop:after-throwing method="afterMethodThrowingArithmeticException" pointcut-ref="declareJointPointExpressionForAfterMethodThrowing" throwing="ex"/>
+			
+			<aop:around method="aroundMethod" pointcut-ref="declareJointPointExpressionForAdd"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="vlidationAspect" order="1">
+			<aop:around method="vlidationArgs" pointcut-ref="declareJointPointExpressionForAll"/>
+		</aop:aspect>
+	</aop:config>
+	
+<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  配置 AOP  END ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->	
+</beans>
