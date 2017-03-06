@@ -17,6 +17,10 @@ public class DepartmentDao extends JdbcDaoSupport{
 
 	@Autowired
 	public void setDataSource2(DataSource dataSource){
+		/**
+		 * public final void setDataSource(javax.sql.DataSource dataSource);
+		 * final方法, 不能被重写
+		 */
 		setDataSource(dataSource);
 	}
 
