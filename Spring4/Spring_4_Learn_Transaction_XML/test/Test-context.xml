@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 测试配置文件 -->
+
+	<!-- 引入定义的Spring配置文件 -->
+	<import resource="classpath:/applicationContext.xml" />
+	
+	<!-- 若有其它测试所需配置, 则在下面配置 -->
+	
+</beans>
