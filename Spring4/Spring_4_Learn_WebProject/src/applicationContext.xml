@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 
+		项目有两个IOC容器 'Spring application context'(根容器) 和  'Spring webapplication context'(Spring MVC的容器)
+		分别对应两个配置文件applicationContext.xml 和 {servletName}-servlet.xml
+		他们之间并不会共享管理的对象.
+		
+		所以在{servletName}-servlet.xml 中要重新扫描生成 'Spring webapplication context' 容器, 完成 MVC 的映射
+		否则而无法处理请求映射 (Spring 根容器(application context)不具备处理映射的功能)
+	
+		下面配置 启动包扫描功能，以便注册带有@Service、@repository、@Component等注解的类成为spring的bean, 生成Spring 根容器(application context). 
+		排除@Controller注解 , @Controller 在 Spring MVC的容器 中用到, 由生成Spring MVC的容器时扫描到MVC容器中
+	--> 
+	<context:component-scan base-package="com.spring4.learn.webproject.transaction">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<!-- 导入资源文件 -->
+	<context:property-placeholder location="classpath:db.properties"/>
+	
+	<!-- 配置 C3P0 数据源 -->
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+
+		<property name="initialPoolSize" value="${jdbc.initPoolSize}"></property>
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
+	</bean>
+	
+	<!-- 配置 Spirng 的 JdbcTemplate -->
+	<bean id="jdbcTemplate" 
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	
+	
+<!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 日志 AOP配置 START ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓  -->
+
+	<bean id="aspectDaoLogger" class="com.spring4.learn.webproject.transaction.aop.aspect.DaoLoggerAspect"></bean>
+	<bean id="aspectServiceLogger" class="com.spring4.learn.webproject.transaction.aop.aspect.ServiceLoggerAspect"></bean>
+
+	<!-- 使 AspectJ 注解起作用 :自动为匹配的类生成代理对象  -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<aop:config>
+		<!-- 1, 配置切点表达式 -->
+		<aop:pointcut id="declareJointPointExpressionForAllDAO" expression="execution (* com.spring4.learn.webproject.transaction.dao.*.*(..))" />
+		<aop:pointcut id="declareJointPointExpressionForAllService" expression="execution (* com.spring4.learn.webproject.transaction.service.*.*(..))" />
+		
+		
+		<!-- 2, 配置切面及通知 -->
+		<aop:aspect ref="aspectDaoLogger" order="1">
+			<aop:before method="beforeMethodForDao" pointcut-ref="declareJointPointExpressionForAllDAO"/>
+			<aop:after-throwing method="afterThrowingForDao" pointcut-ref="declareJointPointExpressionForAllDAO" throwing="ex"/>
+			<!-- 
+			<aop:after-throwing method="afterThrowingForDaoByWarnException" pointcut-ref="declareJointPointExpressionForAllDAO" throwing="ex"/>
+			<aop:after-throwing method="afterThrowingForDaoByBadSqlGrammarException" pointcut-ref="declareJointPointExpressionForAllDAO" throwing="ex"/>
+			 -->
+		</aop:aspect>
+		
+		<aop:aspect ref="aspectServiceLogger" order="1">
+			<aop:before method="beforeMethodForService" pointcut-ref="declareJointPointExpressionForAllService"/>
+		</aop:aspect>
+	</aop:config>
+	
+	
+	
+<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 日志 AOP配置    END  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
+	
+</beans>

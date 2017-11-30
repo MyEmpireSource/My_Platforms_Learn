@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+	
+	<display-name>Spring_4_Learn_WebProject</display-name>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<!-- needed for ContextLoaderListener -->
+	<!-- 配置 Spring 配置文件的名称和位置  -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+
+	<!-- Bootstraps the root web application context before servlet initialization -->
+	<!-- 启动 Spring IOC 容器的 ServletContextListener -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<filter>  
+        <filter-name>Session_Filter</filter-name>  
+        <filter-class>com.spring4.learn.webproject.transaction.filter.SessionFilter</filter-class>  
+    </filter>  
+      
+    <filter-mapping>  
+        <filter-name>Session_Filter</filter-name>  
+        <url-pattern>/*</url-pattern>  
+    </filter-mapping>
+	
+	<!-- Spring mvc 前端控制器servlet -->
+	<servlet>
+		<servlet-name>spring_mvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		
+		<!-- 
+			默认 Spring MVC DispatcherServlet 在 /WEB-INF/下,
+			即 : /WEB-INF/{servlet-name}-servlet.xml
+			其它路径或文件可以如下配置
+		<init-param>
+			<!- - override default name {servlet-name}-servlet.xml - ->
+			<description>配置 Spring mvc 加载的配置文件(配置处理器映射器、适配器等等)</description>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/springmvc-myconfig.xml</param-value>
+			<param-value>classpath:springmvc-myconfig.xml</param-value>
+		</init-param>
+		 -->
+		
+		<!-- 1 容器启动时初始化该 servlet, 0 第一次访问的时候初始化该servlet -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>spring_mvc</servlet-name>
+		<!-- 
+			可行     : /、*.xxx、/xxx/* 
+			不可行  : /* (struts中可以这样配置, 原因是struts和springmvc的入口不一样, struts入口是Filter, springmvc入口是servlet, 在servlet中“/”就代表全部了) -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

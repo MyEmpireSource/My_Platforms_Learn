@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	log4j规定了默认的几个级别
+	trace < debug < info < warn < error <fatal　　　　
+	级别之间是包含的关系，意思是如果你设置日志级别是trace，则大于等于这个级别的日志都会输出 
+ -->
+<!-- status="OFF", 它的含义为是否记录log4j2本身的event信息, 默认是OFF, 可以去掉 -->
+<!-- monitorInterval="30" 定时检查配置文件是否变化(30秒检查一次)并根据变化重新加载 -->
+<configuration status="DEBUG" monitorInterval="30"> 
+
+	<!-- 定义下面的引用名 -->
+	<Properties>
+		
+		<!-- 
+			文件路径可用表达式
+			${web:rootDir}/app.log 
+			${sys:catalina.base}/logs/app.log 
+		-->
+	
+		<Property name="LOG_HOME">${sys:catalina.base}/logs/Spring_4_Learn_WebProject</Property>  
+	
+		<property name="LOG_PATTER">%d{yyyy-MM-dd HH:mm:ss.SSS z} [%t] %-5level %class{36} %L %M - %msg%xEx%n</property>
+		
+		<property name="DEBUG_LOG_FILE_NAME">${LOG_HOME}/debug_aplication_Info.log</property>
+		<property name="LOG_FILE_NAME">${LOG_HOME}/aplication_Info.log</property>
+		<property name="UTIL_LOG_FILE_NAME">${LOG_HOME}/appUtilLog.log</property>
+		<property name="DAO_LOG_FILE_NAME">${LOG_HOME}/mvc/appDaoLog.log</property>
+		<property name="SERVICE_LOG_FILE_NAME">${LOG_HOME}/mvc/appServiceLog.log</property>
+		<property name="CONTROLLER_LOG_FILE_NAME">${LOG_HOME}/mvc/appControllerLog.log</property>
+		
+		<property name="ROLLING_FILE_NAME">app-%d{yyyy-MM-dd}-%i.log.gz</property>
+	
+		<property name="EVERY_FILE_SIZE">10M</property> <!-- 日志切割的最小单位 -->
+		<property name="OUTPUT_LOG_LEVEL">trace</property> <!-- 日志输出级别 -->
+	</Properties>
+	
+	
+	<!-- 先定义所有的appender -->
+	<!--
+		在Log4j2中, 不同的输出位置被称为Appender. 
+		目前, Appender可以是 console, 文件, 远程socket服务器, Apache Flume, JMS以及远程 UNIX系统日志守护进程
+		一个Logger可以绑定多个不同的Appender 
+	 -->
+	<appenders>  
+		<!-- 这个下面定义的是各个appender，就是输出了 -->
+		
+		<!-- 控制台的输出配置 -->
+		<Console name="Console" target="SYSTEM_OUT">  
+			<!-- 
+				过滤器也将返回三类状态：ACCEPT(接受), DENY(拒绝) 或NEUTRAL(中立)
+					ACCEPT 意味着不用再调用其他过滤器了, 这个LogEvent将被执行; 
+					DENY 意味着马上忽略这个event, 并将此event的控制权交还给过滤器的调用者; 
+					NEUTRAL 则意味着这个event应该传递给别的过滤器, 如果再没有别的过滤器可以传递了, 那么就由现在这个过滤器来处理
+			
+				<ThresholdFilter>定义一个过滤器，每个appender可以定义很多个filter
+				onMatch="ACCEPT" onMismatch="DENY" 的意思是匹配就接受，否则直接拒绝
+				根据值得不同还有其它选择, 比如交给其它的过滤器去处理了之类
+				
+				如果有多个ThresholdFilter, 那么Filters是必须的
+				同时在Filters中, 首先要过滤不符合的日志级别, 把不需要的首先DENY掉, 然后再ACCEPT需要的日志级别, 这个次序不能搞颠倒
+				
+				下面的配置控制台只输出 level 及以上级别的信息(onMatch)，其他的直接拒绝(onMismatch)
+			-->
+			<ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
+			<!-- 输出日志的格式 -->
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>  
+		</Console>  
+		
+		<!-- 
+			文件输出配置 
+			append="false" 每次运行程序会自动清空
+			append="true" 追加读写
+			fileName : 保存的文件名称
+			bufferedIO 和 bufferSize 表示将日志内容缓存到bufferSize大小后写入文件
+			<File name="DebugLog" fileName="${DEBUG_LOG_FILE_NAME}" append="false" bufferedIO="true" bufferSize="512">
+		-->
+		<File name="DebugLog" fileName="${DEBUG_LOG_FILE_NAME}" append="false" bufferedIO="true" bufferSize="512">
+			<!--文件会打印出所有信息, 这个log每次运行程序会自动清空, 由append属性决定, 这个也挺有用的，适合临时测试用-->
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+			<Filters>
+				<!-- 
+				<ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL" />  
+				-->
+				<ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
+			</Filters>
+		</File>
+		
+		<!-- 循环文件输出配置 -->
+		<!--这个会打印出所有的信息, 每次大小超过size, 则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩, 作为存档 -->
+		<RollingFile name="RollingFile" fileName="${LOG_HOME}/test.log" filePattern="${LOG_HOME}/${ROLLING_FILE_NAME}">
+			<!-- 此 RollingFile 为学习用, 未被logger引用 -->
+			<PatternLayout pattern="${LOG_PATTER}"/>
+			<SizeBasedTriggeringPolicy size="${EVERY_FILE_SIZE}"/>
+			<!-- DefaultRolloverStrategy 中的参数 max, 可以限制 SizeBasedTriggeringPolicy中size超出后，只保留max个存档 -->  
+			<DefaultRolloverStrategy max="10"/>
+			<Filters>
+				<!-- 
+					日志等级过滤器
+					<ThresholdFilter level="TRACE" onMatch="NEUTRAL" onMismatch="DENY"/>  
+					
+					正则表达式过滤器
+    				<RegexFilter regex=".* test .*" onMatch="NEUTRAL" onMismatch="DENY"/>  
+    				
+    				时间过滤器
+           			<TimeFilter start="05:00:00" end="05:30:00" onMatch=" NEUTRAL " onMismatch="DENY"/>  
+				
+					过滤器也将返回三类状态：ACCEPT(接受), DENY(拒绝) 或NEUTRAL(中立)
+						ACCEPT 意味着不用再调用其他过滤器了, 这个LogEvent将被执行; 
+						DENY 意味着马上忽略这个event, 并将此event的控制权交还给过滤器的调用者; 
+						NEUTRAL 则意味着这个event应该传递给别的过滤器, 如果再没有别的过滤器可以传递了, 那么就由现在这个过滤器来处理
+					
+					如果有多个ThresholdFilter, 那么Filters是必须的
+					同时在Filters中, 首先要过滤不符合的日志级别, 把不需要的首先DENY掉, 然后再ACCEPT需要的日志级别, 这个次序不能搞颠倒
+					
+					以下配置 显示error级别之外的信息 
+				 -->
+				<ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+				<ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
+			</Filters>
+		</RollingFile>
+		
+		
+		<RollingFile name="ControllerLog" fileName="${CONTROLLER_LOG_FILE_NAME}" filePattern="${LOG_HOME}/logBackUp/Controller/${ROLLING_FILE_NAME}">
+			<PatternLayout pattern="${LOG_PATTER}"/>
+			<SizeBasedTriggeringPolicy size="${EVERY_FILE_SIZE}"/>
+			<!-- DefaultRolloverStrategy 中的参数 max, 可以限制 SizeBasedTriggeringPolicy中size超出后，只保留max个存档 -->  
+			<DefaultRolloverStrategy max="50"/>
+			
+			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY" />
+		</RollingFile>
+		
+		<RollingFile name="ServiceLog" fileName="${SERVICE_LOG_FILE_NAME}" filePattern="${LOG_HOME}/logBackUp/Service/${ROLLING_FILE_NAME}">
+			<PatternLayout pattern="${LOG_PATTER}"/>
+			<SizeBasedTriggeringPolicy size="${EVERY_FILE_SIZE}"/>
+			<!-- DefaultRolloverStrategy 中的参数 max, 可以限制 SizeBasedTriggeringPolicy中size超出后，只保留max个存档 -->  
+			<DefaultRolloverStrategy max="50"/>
+			
+			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY" />
+		</RollingFile>
+		
+		<RollingFile name="DaoLog" fileName="${DAO_LOG_FILE_NAME}" filePattern="${LOG_HOME}/logBackUp/DAO/${ROLLING_FILE_NAME}">
+			<PatternLayout pattern="${LOG_PATTER}"/>
+			<SizeBasedTriggeringPolicy size="${EVERY_FILE_SIZE}"/>
+			<!-- DefaultRolloverStrategy 中的参数 max, 可以限制 SizeBasedTriggeringPolicy中size超出后，只保留max个存档 -->  
+			<DefaultRolloverStrategy max="50"/>
+			
+			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY" />
+		</RollingFile>
+		
+		<RollingFile name="ApplicationLog" fileName="${LOG_FILE_NAME}" filePattern="${LOG_HOME}/logBackUp/${ROLLING_FILE_NAME}">
+			<PatternLayout pattern="${LOG_PATTER}"/>
+			<SizeBasedTriggeringPolicy size="${EVERY_FILE_SIZE}"/>
+			<!-- DefaultRolloverStrategy 中的参数 max, 可以限制 SizeBasedTriggeringPolicy中size超出后，只保留max个存档 -->  
+			<DefaultRolloverStrategy max="50"/>
+			<ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
+		</RollingFile>
+		
+		<RollingFile name="UtilLog" fileName="${UTIL_LOG_FILE_NAME}" filePattern="${LOG_HOME}/logBackUp/Util/${ROLLING_FILE_NAME}">
+			<PatternLayout pattern="${LOG_PATTER}"/>
+			<SizeBasedTriggeringPolicy size="${EVERY_FILE_SIZE}"/>
+			<!-- DefaultRolloverStrategy 中的参数 max, 可以限制 SizeBasedTriggeringPolicy中size超出后，只保留max个存档 -->  
+			<DefaultRolloverStrategy max="50"/>
+			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY" />
+		</RollingFile>
+		
+	</appenders>  
+
+	<!-- 定义logger, 只有定义了logger并引入的appender, appender才会生效 -->
+	<loggers>  
+		
+		<!-- 
+			定义许多个logger, 这些logger通过name进行区分. 
+			对不同的logger配置不同的输出, 方法是通过引用上面定义的logger. 
+			注意, <appender-ref> 的 ref 属性引用的值是上面每个 appender 的 name, 而不是节点名称 
+		-->
+		<root level="${OUTPUT_LOG_LEVEL}">  
+			<!-- 
+				<root> 没有name属性, 这个root相当于根节点. 
+				你所有的logger都适用与这个logger, 所以如果没有单独配置, 它们都继承了root的log配置 
+			-->
+			
+			<!-- 输出设置 -->  
+			<appender-ref ref="Console"/>  
+			<appender-ref ref="DebugLog"/>
+			<appender-ref ref="ApplicationLog"/>
+		</root> 
+		
+		<logger name="com.spring4.learn.webproject.util" level="${OUTPUT_LOG_LEVEL}" additivity="false">  
+			<appender-ref ref="Console" />  
+			<appender-ref ref="DebugLog"/>
+			<appender-ref ref="ApplicationLog"/>
+			<appender-ref ref="UtilLog" />  
+		</logger>  
+		
+		 
+		<logger name="com.spring4.learn.webproject.transaction.controller" level="${OUTPUT_LOG_LEVEL}" additivity="false">  
+			<appender-ref ref="Console" />  
+			<appender-ref ref="DebugLog"/>
+			<appender-ref ref="ApplicationLog"/>
+			<appender-ref ref="ControllerLog" />  
+		</logger>
+		
+		<logger name="com.spring4.learn.webproject.transaction.service" level="${OUTPUT_LOG_LEVEL}" additivity="false">  
+			<appender-ref ref="Console" />  
+			<appender-ref ref="DebugLog"/>
+			<appender-ref ref="ApplicationLog"/>
+			<appender-ref ref="ServiceLog" />  
+		</logger>
+		
+		<logger name="com.spring4.learn.webproject.transaction.dao" level="${OUTPUT_LOG_LEVEL}" additivity="false">  
+			<appender-ref ref="Console" />  
+			<appender-ref ref="DebugLog"/>
+			<appender-ref ref="ApplicationLog"/>
+			<appender-ref ref="DaoLog" />  
+		</logger>
+		 
+	</loggers> 
+</configuration>

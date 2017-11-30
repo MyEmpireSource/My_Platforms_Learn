@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	
+	<!-- 启动注解驱动的Spring MVC功能，注册请求url和注解POJO类方法的映射--> 
+	<mvc:annotation-driven />
+	
+	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	
+	<!-- 
+		项目有两个IOC容器 'Spring application context'(根容器) 和  'Spring webapplication context'(Spring MVC的容器)
+		分别对应两个配置文件applicationContext.xml 和 {servletName}-servlet.xml
+		他们之间并不会共享管理的对象.
+		
+		
+		所以在{servletName}-servlet.xml 中要重新扫描生成 'Spring webapplication context' 容器, 完成 MVC 的映射
+		否则而无法处理请求映射 (Spring 根容器(application context)不具备处理映射的功能)
+	 -->
+	<!-- 扫描生成  Spring MVC的容器(webapplication context) -->
+	<context:component-scan base-package="com.spring4.learn.webproject.transaction" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" /> 
+	</context:component-scan>  
+	
+	
+	<!--  对静态资源文件的访问 -->  
+	<!-- 方案一   - ->   
+	<mvc:default-servlet-handler/>      
+	-->
+	<!-- 对静态资源文件的访问  方案二   -->
+	<mvc:resources mapping="/js/**" location="/WEB-INF/resources/js/" cache-period="31556926" />
+	<mvc:resources mapping="/images/**" location="/WEB-INF/resources/images/" cache-period="31556926" />
+	<mvc:resources mapping="/css/**" location="/WEB-INF/resources/css/" cache-period="31556926" />
+	<mvc:resources location="/" mapping="/**" cache-period="31556926"/> 
+	
+	<!--  对模型视图名称的解析，即在模型视图名称添加前后缀  --> 
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/views/" p:suffix=".jsp" />
+
+</beans>
