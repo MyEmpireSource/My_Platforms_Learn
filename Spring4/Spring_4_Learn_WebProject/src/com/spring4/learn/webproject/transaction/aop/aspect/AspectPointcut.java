@@ -20,8 +20,8 @@ import org.springframework.stereotype.Component;
  * @UpdateDate: 2017年3月31日 上午12:29:28
  * @Version: V1.0
  */
-//@Component
-//@Aspect
+@Component
+@Aspect
 public class AspectPointcut {
 	
 	/**
@@ -45,4 +45,8 @@ public class AspectPointcut {
 	@Pointcut("execution (* com.spring4.learn.webproject.transaction.service.*.*(..))")
 	public void declareJointPointExpressionForService() {}
 	*/
+	
+	//@Pointcut("execution (* com.spring4.learn.webproject.transaction.controller.token.TokenNeedOperaterAction.*(..))")
+	@Pointcut("execution (* com.spring4.learn.webproject.transaction.controller.token..*(..))")
+	public void declareJointPoinExpressionForToken(){}
 }

@@ -1,0 +1,99 @@
+{
+	"info": {
+		"name": "Spring_4_Learn_WebProject",
+		"_postman_id": "7230ab00-92fe-fb64-e4c2-bc043c9c3b29",
+		"description": "Spring 4.x WebProject Learn",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登录获取Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pki\":\"liujing@yndw.yn.csg.cn\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/Spring_4_Learn_WebProject/token/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"Spring_4_Learn_WebProject",
+						"token",
+						"login"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Token验证测试",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"gg\",\n\t\"cyx\":\"chenyingxia@yndw.yn.csg.cn-2059\",\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxOTgwMjY1OTg2NiwiaWF0IjoxNTE5Nzk5MDU5ODY2LCJpc3MiOiJTcHJpbmdfNF9MZWFybl9XZWJQcm9qZWN0IiwicGtpS2V5IjoibGl1amluZ0B5bmR3LnluLmNzZy5jbiIsInVzZXJJZCI6IiJ9.anCLcQ_75Cens6vNX3TKHm5fVE9MZpxQU2Y-z_kl3sA\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/Spring_4_Learn_WebProject/token/operater/checkTest",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"Spring_4_Learn_WebProject",
+						"token",
+						"operater",
+						"checkTest"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "其它Action中Token验证测试",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"gg\",\n\t\"cyx\":\"chenyingxia@yndw.yn.csg.cn-2059\",\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxOTc5MjQ0NjY5MiwiaWF0IjoxNTE5Nzg4ODQ2NjkyLCJpc3MiOiJTcHJpbmdfNF9MZWFybl9XZWJQcm9qZWN0IiwicGtpS2V5IjoibGl1amluZ0B5bmR3LnluLmNzZy5jbiIsInVzZXJJZCI6IiJ9.sP347dozQP03FMZyIJ6Y2eFeD9C6fEmUlnc8ShPsggg\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8081/Spring_4_Learn_WebProject/token/test/testPointcutExecution",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"Spring_4_Learn_WebProject",
+						"token",
+						"test",
+						"testPointcutExecution"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

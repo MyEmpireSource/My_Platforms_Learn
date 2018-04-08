@@ -1,11 +1,6 @@
 package com.spring4.learn.webproject.util;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.security.DigestInputStream;
-import java.security.MessageDigest;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -78,5 +73,25 @@ public class Util {
 			ip = request.getRemoteAddr();
 		}
 		return ip;
+	}
+	
+	/**
+	 * 
+	 * @Title: getUUid
+	 * @Description: 获取UUID
+	 * 
+	 * @Params:
+	 *   @return
+	 *
+	 * @Return: String
+	 * 
+	 * @Throws:
+	 *
+	 * @CreateDate: 2018年2月26日 下午2:41:06
+	 * @ChangeDate: 2018年2月26日 下午2:41:06
+	 * @Author: ZCX
+	 */
+	public static String getUUid() {
+		return UUID.randomUUID().toString().trim().replaceAll("-", "");
 	}
 }

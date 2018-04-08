@@ -26,6 +26,17 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
+	<!--文件上传解析器 -->
+	<!-- 
+		<form action="" enctype="multipart/form-data">
+		响应 multipart/form-data 表单(可以上传文件) 
+	 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="500000"></property>
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<property name="uploadTempDir" value="fileUpload/temp"></property>
+    </bean>
+	
 	<!-- 导入资源文件 -->
 	<context:property-placeholder location="classpath:db.properties"/>
 	

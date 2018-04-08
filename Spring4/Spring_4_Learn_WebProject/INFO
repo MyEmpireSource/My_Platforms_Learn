@@ -1,0 +1,10 @@
+Spring 4 MVC
+
+自定义异常
+
+AOP 切片
+	根据异常使用AOP切面返回对应信息
+	
+TOKEN
+	请求过滤
+	TOKEN 验证在AOP切面中完成

@@ -1,0 +1,1024 @@
+{
+	"info": {
+		"name": "SjWebProjectMobile",
+		"_postman_id": "6edf23ba-0121-05fd-8b34-efed17c0c871",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登录获取Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pki\":\"liujing@yndw.yn.csg.cn\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"login"
+					]
+				},
+				"description": "\"data\": {\n        \"ryInfo\": {\n            \"ryId\": 人员ID_2306,\n            \"rymc\": \"人员名称_刘璟\",\n            \"zzbm\": \"人员所在组织(部门)编码_9477\",\n            \"bmzzmc\": \"人员所在组织(部门)名称_审计三科\",\n            \"dwbm\": \"人员所在单位编码_050100\",\n            \"dwzzmc\": \"人员所在单位名称_云南电网有限责任公司\",\n            \"lxsj\": \"联系手机\",\n            \"lxdh\": \"联系电话_13518706373\",\n            \"email\": \"邮箱\",\n            \"usericon\": \"用户头像_module/xtwh/qxgl/userImg/liujing.png\"\n        }\n    }"
+			},
+			"response": []
+		},
+		{
+			"name": "获取风险包信息",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fid\":\"父风险包ID, 第一级为 0 \", \n\t\"tokenId\":\"\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/queryFxbInfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"queryFxbInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "通过风险包查询所包含风险点信息",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fxbId\":\"风险点所属风险包Id\", \n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzQ2NjkzNDU5NiwiaWF0IjoxNTE3NDY2MzM0NTk2LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.l5JZtTg6U023hHClnYAmMVKA4j8eP25OroZFhYrz2YI\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/queryFxdInfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"queryFxdInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "通过风险点ID查询风险点关联法规制度信息",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fxdIdsStr\":\"风险点ID字符串,支持多个或单个风险点, 多个用英文字符逗号','隔开, 如 【3,4,12,81,83】, 单个直接传风险点Id\",\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzQ3MjIxMTQwMSwiaWF0IjoxNTE3NDcxNjExNDAxLCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.VO1Wy1Is5miE-8_6JSBeeRU5hBwG98uAzvJJQVSt3Jo\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/queryFgzdInfoByFxd",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"queryFgzdInfoByFxd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询OA法规制度列表",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pageIndex\":1,\n\t\"pageSize\":15,\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzU1NzE0NTU5OCwiaWF0IjoxNTE3NTU2NTQ1NTk4LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.FArw0ucFpLBN0aDZ8TnfVrrtMS-xDrSoLv-7Z66Edrs\"\n}\n"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/queryOAFgzd",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"queryOAFgzd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询法律法规分类",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"flbzStr\":\"分类标志, 此服务的值为 2 \",\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzU1ODY5MDIyMywiaWF0IjoxNTE3NTU4MDkwMjIzLCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.it4S1R3FHgGyd19cnvOqZRTTd65vn83jJK8H5TmAT6k\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/queryZswdLx",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"queryZswdLx"
+					]
+				},
+				"description": "该服务与 查询审计规范分类、知识文档分类 服务是同一个服务\n\n在查询 法律法规 分类时, flbzStr = 2"
+			},
+			"response": []
+		},
+		{
+			"name": "根据 法律法规分类 查询法律法规文档信息",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"wdid\":\"法律法规分类的Id, 如 法律 是 20\",\n\t\"pageIndex\":1,\n\t\"pageSize\":15,\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzU2MTc3NDUwOSwiaWF0IjoxNTE3NTYxMTc0NTA5LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.fhir28CvtuQUNh6HBBkzMXPiLBaAJBOpLth0A3oZhDM\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/queryFlFgByWdid",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"queryFlFgByWdid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询审计规范分类",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"flbzStr\":\"分类标志, 查询审计规范时此服务的值为 1 \",\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzU1ODY5MDIyMywiaWF0IjoxNTE3NTU4MDkwMjIzLCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.it4S1R3FHgGyd19cnvOqZRTTd65vn83jJK8H5TmAT6k\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/queryZswdLx",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"queryZswdLx"
+					]
+				},
+				"description": "与查询法律法规分类、知识文档分类 服务为同一个，参数不一样\n审计规范 参数 flbzStr = 1"
+			},
+			"response": []
+		},
+		{
+			"name": "查询 设计规范 某个分类下的文档信息",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"wdid\":审计规范分类的Id, 如 法规 是 16,\n\t\"pageIndex\":1,\n\t\"pageSize\":15,\n\t\"ryId\":登录人员的ID, 在登录获取Token服务中已经返回给前台,\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzgwMzEyNDYxNywiaWF0IjoxNTE3ODAyNTI0NjE3LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.dweUVDQZ5d3BdREoWR9KIAwwxw7K2-_0NTeuOtv7pIc\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/querySjgzgfByWdidAndRyId",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"querySjgzgfByWdidAndRyId"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询知识文档 分类",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"flbzStr\": 分类标志, 查询知识文档 分类时此服务的值为 1 ,\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzgxMjA4OTA3MSwiaWF0IjoxNTE3ODExNDg5MDcxLCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.UcZpMZfh61SeZ-zKmRA9-REyqz6Vsh6EmU9jp44t1IM\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/queryZswdLx",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"queryZswdLx"
+					]
+				},
+				"description": "该服务与 查询法律法规分类、查询审计规范分类 服务是同一个服务\n\n在查询 知识文档 分类时, flbzStr = 0"
+			},
+			"response": []
+		},
+		{
+			"name": "查询知识文档某个分类下的文档信息",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"wdid\":知识文档分类的Id, 如 论文 是 2,\n\t\"pageIndex\":1,\n\t\"pageSize\":15,\n\t\"ryId\":登录人员的ID, 在登录获取Token服务中已经返回给前台,\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzgwMzEyNDYxNywiaWF0IjoxNTE3ODAyNTI0NjE3LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.dweUVDQZ5d3BdREoWR9KIAwwxw7K2-_0NTeuOtv7pIc\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/queryZswdByWdidAndRyId",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"queryZswdByWdidAndRyId"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询在建项目列表",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ryId\":登录人员的ID, 在登录获取Token服务中已经返回给前台,\n\t\"pageIndex\":2,\n\t\"pageSize\":15,\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzgxOTg2MzE2NSwiaWF0IjoxNTE3ODE5MjYzMTY1LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.MmuayUkSVsh3873uVX9npWeUgWpmsKSwyAeGz23rtgA\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/querySjXmxxInfoForXtRy",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"querySjXmxxInfoForXtRy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "通过项目编码查询项目信息",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"xmbm\":\"项目编码, 如 ：2008-0001\",\n  \"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzgyMjQ4MDMyNCwiaWF0IjoxNTE3ODIxODgwMzI0LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.DNo2gG16yQfO2RN5ff8hnw0TIQqZamJuUyjkRYiM-Pw\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/showSjXmxxInfoByXmbm",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"showSjXmxxInfoByXmbm"
+					]
+				},
+				"description": "\"sjXmxxInfo\": [\n            {\n              \"xmbm\": \"项目编码-2018-0006\",\n                \"xmnf\": \"项目年份-2018\",\n                \"xmmc\": \"项目名称-test_2018.1.18\",\n                \"sjxmjd\": \"审计项目阶段-8\",\n                \"sjxmjdmc\": \"审计项目阶段名称-现场实施\",\n                \"bsdwbm\": \"被审单位编码8967,057800-0100\",\n                \"bsdwmc\": \"被审单位名称-云南恒兴实业有限公司,云南电力劳动保障事务代理服务所有限公\",\n                \"fzrid\": \"负责人Id-2036\",\n                \"fzrmc\": \"负责人名称-刘璟\",\n                \"xmly\": \"项目来源编码-2\",\n                \"xmlymc\": \"项目来源名称-新增项目\",\n                \"sjlx\": \"审计类型编码-14\",\n                \"sjlxmc\": \"审计类型名称-经济责任审计（任中）\",\n                \"gdbz\": \"归档标志编码-0\",\n                \"gdbzmc\": \"归档标志名称-否\",\n                \"ssdwbm\": \"实施单位编码-050100\",\n                \"ssdwmc\": \"实施单位名称-云南电网有限责任公司\"\n            }\n        ]"
+			},
+			"response": []
+		},
+		{
+			"name": "在建项目-项目档案类型查询",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"xmbm\":\"项目编码 如2018-0002\",\n\t\"searchInfo\":\"搜索栏中输入值\",\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxODA1NzI2NDI3NCwiaWF0IjoxNTE4MDU2NjY0Mjc0LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.ITTSnV74LjT7D-gpkrKPOFABh6dPHlTYmjxbpyHSrcw\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/showParentInfoForSjxm",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"showParentInfoForSjxm"
+					]
+				},
+				"description": "该服务最多返回 11 个分类, 具体是：\n\n[\n\t{\n\t\t\"gnbs\":\"22\", \n\t\t\"name\":\"审前调查通知\"\n\t},\n\t{\n\t\t\"gnbs\":\"GN003001004\", \n\t\t\"name\":\"审前调查\"\n\t},\n\t{\n\t\t\"gnbs\":\"GN003001005\", \n\t\t\"name\":\"审计方案\"\n\t},\n\t{\n\t\t\"gnbs\":\"GN003001003\", \n\t\t\"name\":\"审计通知书\"\n\t\t\n\t},\n\t{\n\t\t\"gnbs\":\"GN003001013\", \n\t\t\"name\":\"交换意见稿\"\n\t},\n\t{\n\t\t\"gnbs\":\"GN003001017\", \n\t\t\"name\":\"审计报告\"\n\t},\n\t{\n\t\t\"gnbs\":\"GN003001021\", \n\t\t\"name\":\"审计整改报告\"\n\t},\n\t{\n\t\t\"gnbs\":\"rzbs\", \n\t\t\"name\":\"审计日志\"\n\t},\n\t{\n\t\t\"gnbs\":\"qzb\", \n\t\t\"name\":\"取证表\"\n\t},\n\t{\n\t\t\"gnbs\":\"sjxj\", \n\t\t\"name\":\"审计小结\"\n\t},\n\t{\n\t\t\"gnbs\":\"wttz\", \n\t\t\"name\":\"问题台账\"\n\t}\n]\n\n其中 gnbs (功能标识)字段用来标识类型"
+			},
+			"response": []
+		},
+		{
+			"name": "在建项目 项目档案 查询列表 某个类型下 信息列表",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"xmbm\":\" 项目编码 2018-0002\",\n\t\"searchInfo\":\"搜索栏中输入的值\",\n\t\"gnbs\":\"上一级服务 项目档案查询 返回条目中的功能标识\",\n\t\"pageIndex\":1,\n\t\"pageSize\":15,\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzk5ODM5MzExNiwiaWF0IjoxNTE3OTk3MTkzMTE2LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.XdEF0-asWE8AkPOfxJAWahP_X_VkwLNZjxSWICydLmg\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/showSjxmDocumentInfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"showSjxmDocumentInfo"
+					]
+				},
+				"description": "该服务返回的数据结构中, 主题数据有5种 分别是\r\n\r\n1， 审前调查通知、审前调查、审计方案、审计通知书、交换意见稿、审计报告、审计整改报告 返回的主题数据结构\r\n\"sjXmxxList\" : [\r\n    {\r\n\t\"id\": \"文件标识, 用于后续查询\",\r\n\t\"source\": \"来源, 用于后续查询\",\r\n\t\"xmbm\": \"项目编码\",\r\n\t\"gnbs\": \"功能标识\",\r\n\t\"wjmc\": \"文件名称, 用于展示\"\r\n    }\r\n]\r\n\r\n2，取证表\r\n\"sjXmxxList\": [\r\n    {\r\n\t2018/2/8\r\n\t\"id\": \"文件标识, 用于后续查询\",\r\n\t\"source\": \"来源, 用于后续查询\",\r\n\t\"syh\": \"索引号, 用于展示\",\r\n\t\"xmbm\": \"2018-0002\",\r\n\t\"gnbs\": \"功能标识\",\r\n\t\"wtzy\": \"问题摘要, 用于展示\"\r\n    }\r\n]\r\n\r\n3， 审计日志\r\n\"sjXmxxList\": [\r\n    {\r\n\t\"id\": \"标识, 用于后续查询\",\r\n\t\"source\": \"来源, 用于后续查询\",\r\n\t\"sjrq\": \"审计日期, 用于展示, 2018-01-08\",\r\n\t\"rymc\": \"日志提交人名称, 用于展示\",\r\n\t\"xmbm\": \"2018-0002\",\r\n\t\"gnbs\": \"功能标识\"\r\n    }\r\n]\r\n\r\n4， 审计小结\r\n\"sjXmxxList\": [\r\n    {\r\n\t\"id\": \"标识, 用于后续查询\"\",\r\n\t\"source\": \"来源, 用于后续查询\",\r\n\t\"rymc\": \"小结提交人名称\",\r\n\t\"xmbm\": \"2018-0002\",\r\n\t\"gnbs\": \"功能标识\"\r\n    }\r\n]\r\n\r\n5，问题台账\r\n \"sjXmxxList\": [\r\n    {\r\n\t\"id\": \"标识, 用于后续查询\"\",\r\n\t\"source\": \"来源, 用于后续查询\",\r\n\t\"xmbm\": \"2018-0002\",\r\n\t\"gnbs\": \"wttz\",\r\n\t\"wtzy\": \"问题摘要, 用于展示\"\r\n    }\r\n]"
+			},
+			"response": []
+		},
+		{
+			"name": "查询历史项目列表",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ryId\":登录人员的ID, 在登录获取Token服务中已经返回给前台,\n\t\"pageIndex\":1,\n\t\"pageSize\":15,\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxODA3MjU3ODM5NiwiaWF0IjoxNTE4MDcxOTc4Mzk2LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.RDabIukUx_AGrZeIM-N6IVRiGFDyBmWG7_V75FG6b28\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/querySjXmxxHistoryInfoForXtRy",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"querySjXmxxHistoryInfoForXtRy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "历史项目-通过项目编码查询项目信息",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"xmbm\":\"项目编码, 如 ：2017-0101\",\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzgyMjQ4MDMyNCwiaWF0IjoxNTE3ODIxODgwMzI0LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.DNo2gG16yQfO2RN5ff8hnw0TIQqZamJuUyjkRYiM-Pw\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/showSjXmxxInfoByXmbm",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"showSjXmxxInfoByXmbm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "历史项目-项目档案类型查询",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"xmbm\":\"2017-0100\",\n\t\"searchInfo\":\"搜索栏中输入值\",\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxODA3Mzk0MzEwNSwiaWF0IjoxNTE4MDcyNzQzMTA1LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.89hoBgeD_q8UR8oyBGUgY-vkhgFug0eu5CbMEUaieyE\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/showParentInfoForSjxm",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"showParentInfoForSjxm"
+					]
+				},
+				"description": "该服务与 ‘在建项目-项目档案类型查询’ 服务为同一个服务， 服务返回描述在‘在建项目-项目档案类型查询’服务中"
+			},
+			"response": []
+		},
+		{
+			"name": "历史项目 项目档案 查询列表 某个类型下 信息列表 ",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"xmbm\":\" 项目编码 2018-0002\",\n\t\"searchInfo\":\"搜索栏中输入的值\",\n\t\"gnbs\":\"上一级服务 项目档案查询 返回条目中的功能标识\",\n\t\"pageIndex\":1,\n\t\"pageSize\":15,\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzk5ODM5MzExNiwiaWF0IjoxNTE3OTk3MTkzMTE2LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.XdEF0-asWE8AkPOfxJAWahP_X_VkwLNZjxSWICydLmg\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/showSjxmDocumentInfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"showSjxmDocumentInfo"
+					]
+				},
+				"description": "该服务 与 ‘在建项目 项目档案 查询列表 某个类型下 信息列表’服务 为同一个服务\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "综合查询",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ryId\":登录人员的ID, 在登录获取Token服务中已经返回给前台,\n\t\"pageIndex\":1,\n\t\"pageSize\":15,\n\t\"searchType\":\"fgzdwd,fgzdtk,zswd,sjgzgf,wdss\", -- 搜索类, 支持多种或单个 最多有6种, 多个时用 ',' 分隔\n\t\"searchInfo\":\"搜索框输入值\",\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxODUwNzYwMzEwMywiaWF0IjoxNTE4NTA3MDAzMTAzLCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.n2Ui32L4va-qjBnGY1JxZbRtIUSdmnKlZE69HUCvjP4\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/showInfoForComprehensive",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"showInfoForComprehensive"
+					]
+				},
+				"description": "综合查询支持六种类型的查询\r\n类型为：\r\n{\r\n\t风险库 : bzfxd,\r\n\t法规制度文档 : fgzdwd,\r\n\t法规制度条款 : fgzdtk,\r\n\t知识文档 : zswd,\r\n\t审计工作规范 : sjgzgf,\r\n\t文档搜索 : wdss,\r\n}\r\n\r\n选中类型后把类型值传入参数，多个类型用','分隔(如选中风险库和知识文档，则传入 'bzfxd,zswd')\r\n\r\n\r\n返回类型最多有6种, 完整结构分别是\r\n\r\n\"data\": {\r\n        \"bzfxdObj\": { -- 风险点信息\r\n            \"bzfxdList\": [\r\n                {\r\n                    \"fxdid\": \"风险点ID\",\r\n                    \"fxmc\": \"风险点名称\",\r\n                    \"source\": \"类型, 风险点类型为bzfxd\"\r\n                },\r\n                 ... ...\r\n                {\r\n                    \"fxdid\": \"380\",\r\n                    \"fxmc\": \"招投标（非招标）资料管理混乱、不合规\",\r\n                    \"source\": \"bzfxd\"\r\n                }\r\n            ],\r\n            \"pageIndex\": 1,\r\n            \"pageSize\": 15,\r\n            \"totalCount\": 929\r\n        },\r\n        \"fgzdtkObj\": { -- 法规制度条款信息\r\n            \"fgzdtkList\": [\r\n                {\r\n                    \"fgzdid\": \"法规制度Id\",\r\n                    \"fgzdmc\": \"法规制度名称\",\r\n                    \"fjid\": \"附件Id\",\r\n                    \"source\": \"类型, 法规制度条款类型为fgzdtk\",\r\n                    \"zbid\": \"499\"\r\n                },\r\n\t\t... ...\r\n                {\r\n                    \"fgzdid\": \"15\",\r\n                    \"fgzdmc\": \"《会计基础工作规范》\",\r\n                    \"fjid\": \"0\",\r\n                    \"source\": \"fgzdtk\",\r\n                    \"zbid\": \"521\"\r\n                }\r\n            ],\r\n            \"pageIndex\": 1,\r\n            \"pageSize\": 15,\r\n            \"totalCount\": 1045\r\n        },\r\n        \"fgzdwdObj\": { -- 法规制度文档\r\n            \"fgzdwdList\": [\r\n                {\r\n                    \"fwname\": \"文档名称\",\r\n                    \"id\": \"文档ID\",\r\n                    \"source\": \"类型, 文档类型有两种 fgzdwd_oa_fgzd | fgzdwd_xt_zswdwh\",\r\n                    \"zdTypeName\": \"制度类型\",\r\n                    \"zdbh\": \"文号\"\r\n                },\r\n\t\t......\r\n                {\r\n                    \"fwname\": \"关于印发《尹琼测试制度02》的通知\",\r\n                    \"id\": \"0D2DE025E4F302DCE0530A6F0ACCBB43\",\r\n                    \"source\": \"fgzdwd_oa_fgzd\",\r\n                    \"zdTypeName\": \"管理制度\",\r\n                    \"zdbh\": \"Q/CSG-YNPG2SP0001-2015\"\r\n                }\r\n            ],\r\n            \"pageIndex\": 1,\r\n            \"pageSize\": 15,\r\n            \"totalCount\": 1032\r\n        },\r\n        \"sjgzgfObj\": { -- 审计工作规范\r\n            \"pageIndex\": 1,\r\n            \"pageSize\": 15,\r\n            \"sjgzgfList\": [\r\n                {\r\n                    \"fjid\": \"附件ID\",\r\n                    \"scr\": \"上传人\",\r\n                    \"shenhe\": \"审核标志 1-已审核, 0-待审核\",\r\n                    \"source\": \"类型，工作规范类型为 sjgzgf\",\r\n                    \"wdid\": \"文档Id\",\r\n                    \"wjm\": \"文件名称\"\r\n                },\r\n\t\t... ...\r\n                {\r\n                    \"fjid\": \"26\",\r\n                    \"scr\": \"刘璟\",\r\n                    \"shenhe\": \"1\",\r\n                    \"source\": \"sjgzgf\",\r\n                    \"wdid\": \"17\",\r\n                    \"wjm\": \"9.中央企业经济责任审计管理暂行办法-2004国资委令7号.docx\"\r\n                }\r\n            ],\r\n            \"totalCount\": 55\r\n        },\r\n        \"zswdObj\": { -- 知识文档\r\n            \"zswdList\": [\r\n                {\r\n                    \"fjid\": \"文件ID\",\r\n                    \"scr\": \"上传人\",\r\n                    \"shenhe\": \"审核标志 1-已审核, 0-待审核\",\r\n                    \"source\": \"类型zswd\",\r\n                    \"wdid\": \"2\",\r\n                    \"wjm\": \"文件名\"\r\n                },\r\n                ......\r\n                {\r\n                    \"fjid\": \"831\",\r\n                    \"scr\": \"陈迎霞\",\r\n                    \"shenhe\": \"1\",\r\n                    \"source\": \"zswd\",\r\n                    \"wdid\": \"8\",\r\n                    \"wjm\": \"大数据在公共管理中的运用与审计启示.doc\"\r\n                }\r\n            ],\r\n\t    \"pageIndex\": 1,\r\n            \"pageSize\": 15,\r\n            \"totalCount\": 22,\r\n        },\r\n\t\"wdssObj\": [ -- 文档搜索， 文档搜索返回值为一个数组\r\n            {\r\n                \"info\": [ -- 某类型具体数据\r\n                    {\r\n                        \"content\": \"文档内容\",\r\n                        \"fjid\": \"附件ID\",\r\n                        \"fjlx\": \"类型xt_zswdwh\",\r\n                        \"fwsj\": \"发文时间\",\r\n                        \"scr\": \"上传人\",\r\n                        \"wjhz\": \"文件后缀\",\r\n                        \"wjm\": \"文件名称\"\r\n                    },\r\n                    ... ... \r\n                    {\r\n                        \"content\": \"中国特色社会主义审计......\",\r\n                        \"fjid\": \"821\",\r\n                        \"fjlx\": \"xt_zswdwh\",\r\n                        \"fwsj\": \"2016-10-14\",\r\n                        \"scr\": \"陈迎霞\",\r\n                        \"wjhz\": \"doc\",\r\n                        \"wjm\": \"完善发展中国特色社会主义审计监督制度——中国特色社会主义审计监督制度研讨会综述.doc\"\r\n                    }\r\n                ],\r\n                \"title\": \"知识文档\" 文档类型(有三种)\r\n            },\r\n            {\r\n                \"info\": [ -- 某类型具体数据\r\n                    {\r\n                        \"content\": \"文档内容\",\r\n                        \"fjid\": \"附件ID\",\r\n                        \"fjlx\": \"类型xt_zswdwh\",\r\n                        \"fwsj\": \"发文时间\",\r\n                        \"scr\": \"上传人\",\r\n                        \"wjhz\": \"文件后缀\",\r\n                        \"wjm\": \"文件名称\"\r\n                    },\r\n                    ... ... \r\n                    {\r\n                        \"content\": \"中国内部审计准则序言......\",\r\n                        \"fjid\": \"14\",\r\n                        \"fjlx\": \"xt_zswdwh\",\r\n                        \"fwsj\": \"\",\r\n                        \"scr\": \"刘璟\",\r\n                        \"wjhz\": \"doc\",\r\n                        \"wjm\": \"50.内部审计基本准则和具体准则（1-29号）.doc\"\r\n                    }\r\n                ],\r\n                \"title\": \"审计工作规范\"\r\n            },\r\n            {\r\n                \"info\": [ -- 某类型具体数据\r\n                    {\r\n                        \"content\": \"文档内容\",\r\n                        \"fjid\": \"附件ID\",\r\n                        \"fjlx\": \"类型 xt_fwqwj\",\r\n                        \"fwsj\": \"发文时间\",\r\n                        \"scr\": \"上传人\",\r\n                        \"wjhz\": \"文件后缀\",\r\n                        \"wjm\": \"文件名称\"\r\n                    },\r\n                    ... ...\r\n                    {\r\n                        \"content\": \"熟悉电力<font style='color:red'>法律</font>法规，电力营销有关规章制度及其他相关<font style='color:red'>法律</font>法规知识。\",\r\n                        \"fjid\": \"691\",\r\n                        \"fjlx\": \"xt_fwqwj\",\r\n                        \"fwsj\": \"2016-09-14\",\r\n                        \"scr\": \"张乔良\",\r\n                        \"wjhz\": \"doc\",\r\n                        \"wjm\": \"中国南方电网有限责任公司营销业务在线稽查作业指导书(Q_CSG414020-2014).doc\"\r\n                    }\r\n                ],\r\n                \"title\": \"法规制度库\"\r\n            }\r\n        ]\r\n    }"
+			},
+			"response": []
+		},
+		{
+			"name": "审批-待办列表",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ryId\":登录人员的ID, 在登录获取Token服务中已经返回给前台,\n  \"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxOTgxMDUyMTE1OCwiaWF0IjoxNTE5ODA2OTIxMTU4LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.239bT8xX3_OgKIfC-UcXRQ7lLbCf-EXhfJf_0e4xRi8\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/approval/showApprovalXmInfoForRy",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"approval",
+						"showApprovalXmInfoForRy"
+					]
+				},
+				"description": "返回数据\r\n{\r\n    \"sjxmrwInfoList\": [\r\n        {\r\n            \"sjxmjdRwKssj\": 任务下发时间,\r\n            \"sjxmjd\": 审计项目阶段,\r\n            \"sjxmjdmc\": 审计项目阶段名称,\r\n            \"xmbm\": 项目编码,\r\n            \"xmmc\": 项目名称\r\n        },\r\n        ... ...\r\n        {\r\n            \"sjxmjdRwKssj\": \"2017-12-29 11:17:33.0\",\r\n            \"sjxmjd\": 11,\r\n            \"sjxmjdmc\": \"现场实施三级复核\",\r\n            \"xmbm\": \"2017-0102\",\r\n            \"xmmc\": \"2017-12-29 测试流程\"\r\n        }\r\n    ]\r\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "审计方案, 交换意见稿, 审计报告 复核阶段详细信息l",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ryId\":登录人员Id,\n  \"xmbm\":\"项目编码\",\n  \"sjXmjd\":审计项目阶段,\n  \"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUyMDgyOTI2OTQ1OSwiaWF0IjoxNTIwODI1NjY5NDU5LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.AQykDyvVeYOeAsLofQnM5WLYDZlrgeVuTATCsKKSQMU\"\n  \n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/approval/showSjXmxxAndSjXmjdInfoForApproval",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"approval",
+						"showSjXmxxAndSjXmjdInfoForApproval"
+					]
+				},
+				"description": "参数中sjXmjd说明\n该方法查询 9个阶段的文档及项目信息, 每个阶段的sjxmjd已经在 审批-待办列表中返回\n\n其对应的审计项目阶段分别是：\n{\n  审计方案一级复核 : 5, \n  审计方案二级复核 : 6, \n  审计方案三级复核 : 7,  \n  交换意见稿一级复核 : 13, \n  交换意见稿二级复核 : 14,  \n  交换意见稿三级复核 : 15, \n  审计报告一级复核 : 17, \n  审计报告二级复核 : 18, \n  审计报告三级复核 : 19\n}\n\n\n返回数据字段解释\n{\n    \"data\": {\n        \"sjxmAndXmrwInfo\": {\n            \"jssj\": \"项目结束时间\",\n            \"kssj\": \"项目开始时间\",\n            \"sjxmjd\": 项目所处审计项目阶段,\n            \"sjxmjdRwKssj\": \"该审计项目阶段开始时间\",\n            \"sjxmjdmc\": \"审计项目阶段名称\",\n            \"xmbm\": \"项目编码\",\n            \"xmmc\": \"项目名称\",\n            \"sjXmwdInfo\": {\n              \"mbid\": 文档模板ID,\n            \"sjfjlx\": 审计附件类型,\n          \"sjxmjd\": 文档创建的审计项目阶段,\n            \"wdid\": \"文档Id\",\n          \"wdmc\": \"文档名称\",\n            \"wdnr\": \"文档内容\"\n            }\n        }\n    }"
+			},
+			"response": []
+		},
+		{
+			"name": "现场实施-查询待审核的审计日志",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"xmbm\":\"2018-0006\",\n  \"sjXmjd\":现场实施三级复核的 审计项目阶段 {现场实施一级复核 : 9, 现场实施二级复核 : 10, 现场实施三级复核 :11},\n  \"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUyMDkxNDQwMjgzMCwiaWF0IjoxNTIwOTEwODAyODMwLCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.lJa4W7t4q1i5AT3dNQGbpCf5XoIuTxNgY_TGZC1UDzM\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/approval/showSjSjrzByXmbmAndSsxmjdForApproval",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"approval",
+						"showSjSjrzByXmbmAndSsxmjdForApproval"
+					]
+				},
+				"description": "返回值字段描述:\n\n\"sjSjrzList\": [\n            {\n                \"ejspjl\": 二级审批结论[0 | 1],\n                \"ejspjlmc\": \"二级审批结论名称 (未审核)\",\n                \"ejspyj\": \"二级审批建议\",\n                \"sjrid\": 审计人ID,\n                \"sjrmc\": \"审计人名称\",\n                \"sjrq\": \"审计日期\",\n                \"sjrzid\": \"f44ca6f5-e499-4c32-a441-d1eb5fda0e49\",\n                \"sjspjl\": 三级审批结论[0 | 1],\n                \"sjspjlmc\": \"三级审批结论名称 (未审核)\",\n                \"sjspyj\": \"三级审批建议\",\n                \"sjsxmc\": \"测试-流程修改\",\n                \"spjsbz\": 审批结束标志0,\n                \"spjsbzmc\": \"审批结束标志名称否\",\n                \"syh\": \"索引号\",\n                \"xmbm\": \"2018-0006\",\n                \"yjspjl\": 一级审批结论[0 | 1],\n                \"yjspjlmc\": \"一级审批结论名称 (未审核)\",\n                \"yjspyj\": \"一级审批建议\"\"\n            },\n           ... ... ...,\n            {\n                \"ejspjl\": 0,\n                \"ejspjlmc\": \"未审核\",\n                \"ejspyj\": \"\",\n                \"sjrid\": 2059,\n                \"sjrmc\": \"陈迎霞\",\n                \"sjrq\": \"2018-03-13\",\n                \"sjrzid\": \"bda84786-1f99-44a0-ae17-ce4035f830ec\",\n                \"sjspjl\": 0,\n                \"sjspjlmc\": \"未审核\",\n                \"sjspyj\": \"\",\n                \"sjsxmc\": \"审计事项的名称-测试流程\",\n                \"spjsbz\": 0,\n                \"spjsbzmc\": \"否\",\n                \"syh\": \"2018-0006-002\",\n                \"xmbm\": \"2018-0006\",\n                \"yjspjl\": 0,\n                \"yjspjlmc\": \"未审核\",\n                \"yjspyj\": \"\"\n            }\n        ]"
+			},
+			"response": []
+		},
+		{
+			"name": "现场实施-查询待审核的审计取证表",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"xmbm\":\"2018-0006\",\n  \"sjXmjd\":现场实施三级复核的 审计项目阶段 {现场实施一级复核 : 9, 现场实施二级复核 : 10, 现场实施三级复核 :11},\n  \"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUyMDkxNDQwMjgzMCwiaWF0IjoxNTIwOTEwODAyODMwLCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.lJa4W7t4q1i5AT3dNQGbpCf5XoIuTxNgY_TGZC1UDzM\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/approval/showSjQzbByXmbmAndSsxmjdForApproval",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"approval",
+						"showSjQzbByXmbmAndSsxmjdForApproval"
+					]
+				},
+				"description": "返回数据说明\n\n\"sjSjqzbList\": [\n            {\n                \"ejspjl\": 二级审批结论,\n                \"ejspjlmc\": \"二级审批结论名称\",\n                \"ejspyj\": \"二级审批建议\",\n                \"qzbid\": \"取证表Id\",\n                \"sjspjl\": 二级审批结论,\n                \"sjspjlmc\": \"二级审批结论名称\",\n                \"sjspyj\": \"二级审批建议\",\n                \"spjsbz\": 审批结束标志,\n                \"spjsbzmc\": \"审批结束标志名称\",\n                \"ssxmjd\": 取证表所在审计项目阶段,\n                \"syh\": \"索引号\",\n                \"wtlx\": 问题类型\",\n                \"wtzy\": \"问题摘要\",\n                \"xmbm\": \"2018-0006\",\n                \"xmwtxh\": 项目问题序号,\n                \"yjspjl\": 一级审批结论,\n                \"yjspjlmc\": \"一级审批结论名称\",\n                \"yjspyj\": \"一级审批建议\",\n                \"yxbz\": 有效标志,\n                \"yxbzmc\": \"有效标志名称\"\n            },\n            ... ... ...\n            {\n                \"ejspjl\": 0,\n                \"ejspjlmc\": \"未审核\",\n                \"ejspyj\": \"\",\n                \"qzbid\": \"1248e2b5-cfb6-4a83-b4df-4858e52650dc\",\n                \"sjspjl\": 0,\n                \"sjspjlmc\": \"未审核\",\n                \"sjspyj\": \"\",\n                \"spjsbz\": 0,\n                \"spjsbzmc\": \"否\",\n                \"ssxmjd\": 9,\n                \"syh\": \"2018-0006-003\",\n                \"wtlx\": \"财务\",\n                \"wtzy\": \"测试-取证表复核\",\n                \"xmbm\": \"2018-0006\",\n                \"xmwtxh\": 3,\n                \"yjspjl\": 0,\n                \"yjspjlmc\": \"未审核\",\n                \"yjspyj\": \"\",\n                \"yxbz\": 1,\n                \"yxbzmc\": \"正常\"\n            }\n        ]"
+			},
+			"response": []
+		},
+		{
+			"name": "现场实施-获取取证表与项目信息",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"xmbm\":\"2018-0006\",\n  \"ryId\":审核操作人Id,\n  \"xmwtxh\":取证表xmwtxh,\n  \"sjXmjd\":审计项目阶段, 现场实施三级复核的 审计项目阶段 {现场实施一级复核 : 9, 现场实施二级复核 : 10, 现场实施三级复核 :11},\n  \"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUyMDkzMzk0MjUwNSwiaWF0IjoxNTIwOTMwMzQyNTA1LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.OZMrOYkhfl8u2tBCJf4QaC8jx1b7HTZ3QOnXKZu0V08\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/approval/showSjQzbAndSjXmjdInfoForApproval",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"approval",
+						"showSjQzbAndSjXmjdInfoForApproval"
+					]
+				},
+				"description": "取证表字段信息\r\n\r\n`qzbid` varchar(38) NOT NULL DEFAULT '' COMMENT '取证表id',\r\n`xmbm` varchar(38) NOT NULL DEFAULT '',\r\n`xmwtxh` int(10) unsigned NOT NULL COMMENT '项目问题序号（1,2,3,..）',\r\n`fxdid` int(10) unsigned NOT NULL COMMENT '风险点id（1,2,3,...自动递增序号）',\r\n`wtlx` text NOT NULL COMMENT '问题类型（验收管理）',\r\n`wtzy` text NOT NULL COMMENT '问题摘要（由建设单位、设计单位、监理单位、施工单位组织验收的竣工验收报告中，无竣工验收日期。）',\r\n`cnbz` tinyint(4) NOT NULL COMMENT '采纳标志（【SFBZ】）',\r\n`wtzt` tinyint(4) NOT NULL COMMENT '问题状态（【WTZT】）',\r\n`syh` varchar(64) DEFAULT NULL COMMENT '索引号（）',\r\n`kjqj` varchar(64) DEFAULT NULL COMMENT '会计期间或者截止日期（）',\r\n`yssjdw` varchar(128) DEFAULT NULL COMMENT '延伸审计单位（）',\r\n`jtsjsx` varchar(128) DEFAULT NULL COMMENT '具体审计事项（）',\r\n`syfg` longtext COMMENT '适用法规（）',\r\n`sjrid` int(10) unsigned NOT NULL COMMENT '审计人id（）',\r\n`sjzzid` int(10) unsigned NOT NULL COMMENT '审计组长id（）',\r\n`sjrq` date NOT NULL COMMENT '审计日期（）',\r\n`bsdwyj` varchar(256) DEFAULT NULL COMMENT '被审计单位意见（）',\r\n`bsdwfzr` varchar(64) DEFAULT NULL COMMENT '被审计单位负责人（）',\r\n`sjje` decimal(12,2) DEFAULT NULL COMMENT '涉及金额（100000）',\r\n`bzsm` varchar(256) DEFAULT NULL COMMENT '备注说明（）',\r\n`ssxmjd` tinyint(4) NOT NULL COMMENT '实施项目阶段（【SJXMJD】）',\r\n`ssryid` int(10) unsigned NOT NULL COMMENT '实施人员id（113_李四）',\r\n`spjsbz` tinyint(4) NOT NULL COMMENT '审批结束标志（【SFBZ】）',\r\n`yjspjl` tinyint(4) NOT NULL COMMENT '一级审批结论（【SPJL】）',\r\n`yjspyj` varchar(512) DEFAULT NULL COMMENT '一级审批意见',\r\n`yjsprid` int(10) unsigned DEFAULT NULL COMMENT '一级审批人id（113_李四）',\r\n`yjspsj` datetime DEFAULT NULL COMMENT '一级审批时间（2010-1-1 13:01:08）',\r\n`ejspjl` tinyint(4) NOT NULL COMMENT '二级审批结论（【SPJL】）',\r\n`ejspyj` varchar(512) DEFAULT NULL COMMENT '二级审批意见',\r\n`ejsprid` int(10) unsigned DEFAULT NULL COMMENT '二级审批人id（113_李四）',\r\n`ejspsj` datetime DEFAULT NULL COMMENT '二级审批时间（2010-1-1 13:01:08）',\r\n`sjspjl` tinyint(4) NOT NULL COMMENT '三级审批结论（【SPJL】）',\r\n`sjspyj` varchar(512) DEFAULT NULL COMMENT '三级审批意见',\r\n`sjsprid` int(10) unsigned DEFAULT NULL COMMENT '三级审批人id（113_李四）',\r\n`sjspsj` datetime DEFAULT NULL COMMENT '三级审批时间（2010-1-1 13:01:08）',\r\n`dwbm` varchar(20) NOT NULL COMMENT '实施单位编码（05_云南电网公司,0591_京华会计师事务所云南分所）',\r\n`czrid` int(10) unsigned NOT NULL COMMENT '操作人id（113_李四）',\r\n`cjsj` datetime NOT NULL COMMENT '创建时间（2010-1-1 13:01:08）',\r\n`czsj` datetime NOT NULL COMMENT '操作时间（2013-9-10 13:01:08）',\r\n`bsjdwtjbz` tinyint(4) DEFAULT NULL COMMENT '被审计单位提交标识:0 审计方已下发或下发但未提交的; 1 表示被审计方已提交.',\r\n`yxbz` tinyint(4) NOT NULL DEFAULT '1' COMMENT '效标志, (1-正常, 0-作废)，xt_dmbm中dmfl=YXBZ',\r\n`wtfskssj` varchar(8) DEFAULT NULL COMMENT '问题发生开始时间,到月(yyyy-mm)',\r\n`wtfsjssj` varchar(8) DEFAULT NULL COMMENT '问题发生结束时间,到月(yyyy-mm)',\r\n`wjje` decimal(10,2) DEFAULT '0.00' COMMENT '问题金额_违纪, 单位万元，精确到小数点后两位',\r\n`wgje` decimal(10,2) DEFAULT '0.00' COMMENT '问题金额_违规, 单位万元，精确到小数点后两位',\r\n`sslf` decimal(10,2) DEFAULT '0.00' COMMENT '问题金额_损失浪费, 单位万元，精确到小数点后两位',\r\n`shyhhtrly` decimal(10,2) DEFAULT '0.00' COMMENT '问题金额_损害用户或他人利益, 单位万元，精确到小数点后两位',\r\n`shygly` decimal(10,2) DEFAULT '0.00' COMMENT '问题金额_损害员工利益, 单位万元，精确到小数点后两位',\r\n`glbgf` decimal(10,2) DEFAULT '0.00' COMMENT '问题金额_管理不规范, 单位万元，精确到小数点后两位',\r\n`hsbgf` decimal(10,2) DEFAULT '0.00' COMMENT '问题金额_核算不规范, 单位万元，精确到小数点后两位',\r\n`hjje` decimal(10,2) DEFAULT '0.00' COMMENT '问题金额_合计金额, 合计金额有前面几项(违纪、违规、损失浪费、损害用户或他人利益、损害员工利益、管理不规范、核算不规范)金额自动加和, 单位万元，精确到小数点后两位',\r\n`zrdx` int(2) DEFAULT '0' COMMENT '责任定性（【ZRDX】）',\r\n`qzbssbsjdwdwbm` varchar(20) DEFAULT NULL COMMENT '取证表所属被审计单位单位编码',\r\n`qzbssbsjdwdwmc` varchar(255) DEFAULT NULL COMMENT '取证表所属被审计单位名称',\r\n`bsjdwzzrbmzzbm` varchar(20) DEFAULT '' COMMENT '被审计单位主责部门组织编码',\r\n`bsjdwzzrbmmc` varchar(128) DEFAULT '' COMMENT '被审计单位主责部门名称',\r\n`qtzzbmzzbm` varchar(512) DEFAULT NULL COMMENT '其他责任部门组织编码, 可以多个, 用 ‘，’分隔',\r\n`qtzzbmmc` varchar(512) DEFAULT NULL COMMENT '其他责任部门名称, 可以多个, 用 ‘，’分隔',\r\n`sjfg` text COMMENT '审计分工(任务分工)，增加取证表时自动根据分配模块生成审计分工内容',\r\n`cjrid` int(10) DEFAULT '-1' COMMENT '取证表，创建人ID，2017-07-07因设置送审条件添加'"
+			},
+			"response": []
+		},
+		{
+			"name": "现场实施-获取审计日志与项目信息",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"xmbm\":\"2018-0006\",\n  \"ryId\":复核操作的操作人ID,\n  \"sjrid\":创建审计日志的审计人ID,\n  \"sjrq\":\"审计日志的审计日期\",\n  \"sjXmjd\":审计项目阶段, 现场实施三级复核的 审计项目阶段 {现场实施一级复核 : 9, 现场实施二级复核 : 10, 现场实施三级复核 :11},\n  \"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUyMDkzMTE5MDExNSwiaWF0IjoxNTIwOTI3NTkwMTE1LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.-N6U3s4iwyUjuoPCbL142MnS2nF8GJ5QArFH-Pffb-A\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/approval/showSjSjRzAndSjXmjdInfoForApproval",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"approval",
+						"showSjSjRzAndSjXmjdInfoForApproval"
+					]
+				},
+				"description": "`sjrzid` varchar(38) NOT NULL COMMENT '日志id',\r\n`rzglfj` varchar(128) DEFAULT NULL,\r\n`xmbm` varchar(38) NOT NULL DEFAULT '',\r\n`sjrq` date NOT NULL COMMENT '审计日期（2016/1/30）',\r\n`sjrid` int(10) unsigned NOT NULL COMMENT '审计人id（113_李四）',\r\n`syh` varchar(64) DEFAULT NULL COMMENT '索引号（）',\r\n`yssjdw` varchar(128) DEFAULT NULL COMMENT '延伸审计单位（）',\r\n`sjfg` varchar(128) DEFAULT NULL COMMENT '审计分工（）',\r\n`sjsxmc` text NOT NULL COMMENT '审计事项名称（）',\r\n`sjbzff` text COMMENT '审计步骤和方法（）',\r\n`zlmcsl` text COMMENT '资料名称和数量（）',\r\n`pdjg` text COMMENT '专业判断和查证结果（）',\r\n`jqgzap` text COMMENT '近期工作安排（）',\r\n`qtjlqk` text COMMENT '其他记录情况（）',\r\n`ssxmjd` tinyint(4) NOT NULL COMMENT '实施项目阶段（【SJXMJD】）',\r\n`spjsbz` tinyint(4) NOT NULL COMMENT '审批结束标志（【SFBZ】）',\r\n`yjspjl` tinyint(4) NOT NULL COMMENT '一级审批结论（【SPJL】）',\r\n`yjspyj` varchar(512) DEFAULT NULL COMMENT '一级审批意见',\r\n`yjsprid` int(10) unsigned DEFAULT NULL COMMENT '一级审批人id（113_李四）',\r\n`yjspsj` datetime DEFAULT NULL COMMENT '一级审批时间（2010-1-1 13:01:08）',\r\n`ejspjl` tinyint(4) NOT NULL COMMENT '二级审批结论（【SPJL】）',\r\n`ejspyj` varchar(512) DEFAULT NULL COMMENT '二级审批意见',\r\n`ejsprid` int(10) unsigned DEFAULT NULL COMMENT '二级审批人id（113_李四）',\r\n`ejspsj` datetime DEFAULT NULL COMMENT '二级审批时间（2010-1-1 13:01:08）',\r\n`sjspjl` tinyint(4) NOT NULL COMMENT '三级审批结论（【SPJL】）',\r\n`sjspyj` varchar(512) DEFAULT NULL COMMENT '三级审批意见',\r\n`sjsprid` int(10) unsigned DEFAULT NULL COMMENT '三级审批人id（113_李四）',\r\n`sjspsj` datetime DEFAULT NULL COMMENT '三级审批时间（2010-1-1 13:01:08）',\r\n`dwbm` varchar(20) NOT NULL COMMENT '实施单位编码（05_云南电网公司,0591_京华会计师事务所云南分所）',\r\n`cjsj` datetime NOT NULL COMMENT '创建时间（2010-1-1 13:01:08）',\r\n`czsj` datetime NOT NULL COMMENT '操作时间（2013-9-10 13:01:08）',"
+			},
+			"response": []
+		},
+		{
+			"name": "查询审计日志或取证表所关联的附件信息",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"xmbm\":\"2018-0006\",\n  \"ywxxid\":\"业务信息ID, 对于审计日志, 从 ‘现场实施-获取审计日志与项目信息’ 服务中获取日志的 rzglfj (日志关联附件)字段, 对于取证表, 则是‘现场实施-获取取证表与项目信息’返回的取取证表的 xmwtxh(项目问题序号)字段\",\n  \"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUyMTEwNDI4NTEyNSwiaWF0IjoxNTIxMDk3MDg1MTI1LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.b-Wdff_Ulv3qr1s_ely9V6Ss3o-KMaf0BiISsCU94Oo\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/approval/showSjrzOrSjqzbAnnexesForApproval",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"approval",
+						"showSjrzOrSjqzbAnnexesForApproval"
+					]
+				},
+				"description": "\"rzOrQzbAnnexeList\": [\n            {\n                \"fjid\": 附件ID,\n                \"fwqid\": 服务器Id,\n                \"md5\": \"MD5值\",\n                \"sjfjmc\": \"审计附件名称\",\n                \"wjbs\": \"文件标识\",\n                \"wjdx\": 文件大小,\n                \"wjhz\": \"文件后缀\",\n                \"wjlj\": \"文件路径\",\n                \"wjmc\": \"文件名称\"\n            },\n            {\n                \"fjid\": 854,\n                \"fwqid\": 0,\n                \"md5\": \"5F63C202704F0F293F981622E79A9269\",\n                \"sjfjmc\": \"10-qzb_17-06-20.png\",\n                \"wjbs\": \"eckCpBt6bqpozEgtPx7gbCbXcdhmV7ws\",\n                \"wjdx\": 35,\n                \"wjhz\": \"png\",\n                \"wjlj\": \"0/GN003001009/6/2018-03-13/050100\",\n                \"wjmc\": \"10-qzb_17-06-20.png\"\n            }\n        ]"
+			},
+			"response": []
+		},
+		{
+			"name": "复核服务",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"xmbm\":\"项目编码\",\n  \"spjl\":\"审批结论 [1 | 2 | 3], 三种 [{\"0\":\"未审核\"},{\"1\":\"同意\"},{\"2\":\"不同意\"},]\",\n  \"spyj\":\"审批意见\", \n  \"sprid\":审批人ID（做审批操作的登录人员ID）,\n  \"spsj\":\"审批时间 格式为 yyyy-mm-dd HH:MM:ss, 可以为空, 若不传则去后台响应时间\",\n  \"sjXmjd\":\"审计方案, 交换意见稿, 审计报告 的审计项目阶段, 现场实施(日志或取证表时不可以传参数, 要为空字符)\",\n  \"sjrzSjrq\":\"现场实施-日志复核中 日志的审计日期\",\n  \"sjrzSjrid\":\"现场实施-日志复核中 日志的审计人ID(创建人ID)\",\n  \"sjqzbXmwtzh\":\"现场实施-取证表复核中 取证表项目问题序号\",\n  \"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUyMTE5ODM1ODA1OCwiaWF0IjoxNTIxMTk0NzU4MDU4LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0._BKQ8COGdKxoXqFd66QQfLyUIBP-rDwxqSz9fF_MgeQ\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/approval/approvalOperateByApp",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"approval",
+						"approvalOperateByApp"
+					]
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "取证-待办项目信息列表",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ryId\":登录人员的ID, 在登录获取Token服务中已经返回给前台 (如 2036),\n  \"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUyMTQ1MDgyNjU2MywiaWF0IjoxNTIxNDQ3MjI2NTYzLCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.oqlCSDwS4QDlaGyDlbtforAu6tOjos6-cJUFZhc5wpQ\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/obtainEvidence/showObtainEvidenceXmInfoForRy",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"obtainEvidence",
+						"showObtainEvidenceXmInfoForRy"
+					]
+				},
+				"description": "返回数据, 界面原型上用到 项目编码和项目名称\r\n{\r\n    \"sjxmrwInfoList\": [\r\n        {\r\n            \"sjxmjdRwKssj\": 任务下发时间,\r\n            \"sjxmjd\": 审计项目阶段,\r\n            \"sjxmjdmc\": 审计项目阶段名称,\r\n            \"xmbm\": 项目编码,\r\n            \"xmmc\": 项目名称\r\n        },\r\n        ... ...\r\n        {\r\n            \"sjxmjdRwKssj\": \"2017-12-29 11:17:33.0\",\r\n            \"sjxmjd\": 11,\r\n            \"sjxmjdmc\": \"现场实施三级复核\",\r\n            \"xmbm\": \"2017-0102\",\r\n            \"xmmc\": \"2017-12-29 测试流程\"\r\n        }\r\n    ]\r\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "取证-通过项目编码查询项目信息",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"xmbm\":\"项目编码, 如 ：2008-0001\",\n  \"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUxNzgyMjQ4MDMyNCwiaWF0IjoxNTE3ODIxODgwMzI0LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.DNo2gG16yQfO2RN5ff8hnw0TIQqZamJuUyjkRYiM-Pw\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/operater/showSjXmxxInfoByXmbm",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"operater",
+						"showSjXmxxInfoByXmbm"
+					]
+				},
+				"description": "该服务和 '通过项目编码查询项目信息' 服务为同一个服务，\n返回字段查看该服务"
+			},
+			"response": []
+		},
+		{
+			"name": "取证-查询待取证的审计取证表",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"xmbm\":\"项目编码-2018-0014\",\n  \"sjXmjd\":现场实施的审计项目阶段, 在该功能(获取待取证取证表), 只能是8,\n  \"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUyMTUxNTk3MTMwMywiaWF0IjoxNTIxNTEyMzcxMzAzLCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.MFOOEOPds75d8X9l5bzFoeXTYdxPvssmyjEckhQiUqY\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/approval/showSjQzbByXmbmAndSsxmjdForApproval",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"approval",
+						"showSjQzbByXmbmAndSsxmjdForApproval"
+					]
+				},
+				"description": "该服务与 '现场实施-查询待审核的审计取证表'服务为同一个服务, 只是sjxmjd的值不一样\n\n返回数据说明\n\n\"sjSjqzbList\": [\n            {\n                \"ejspjl\": 二级审批结论,\n                \"ejspjlmc\": \"二级审批结论名称\",\n                \"ejspyj\": \"二级审批建议\",\n                \"qzbid\": \"取证表Id\",\n                \"sjspjl\": 二级审批结论,\n                \"sjspjlmc\": \"二级审批结论名称\",\n                \"sjspyj\": \"二级审批建议\",\n                \"spjsbz\": 审批结束标志,\n                \"spjsbzmc\": \"审批结束标志名称\",\n                \"ssxmjd\": 取证表所在审计项目阶段,\n                \"syh\": \"索引号\",\n                \"wtlx\": 问题类型\",\n                \"wtzy\": \"问题摘要\",\n                \"xmbm\": \"2018-0006\",\n                \"xmwtxh\": 项目问题序号,\n                \"yjspjl\": 一级审批结论,\n                \"yjspjlmc\": \"一级审批结论名称\",\n                \"yjspyj\": \"一级审批建议\",\n                \"yxbz\": 有效标志,\n                \"yxbzmc\": \"有效标志名称\"\n            },\n            ... ... ...\n            {\n                \"ejspjl\": 0,\n                \"ejspjlmc\": \"未审核\",\n                \"ejspyj\": \"\",\n                \"qzbid\": \"1248e2b5-cfb6-4a83-b4df-4858e52650dc\",\n                \"sjspjl\": 0,\n                \"sjspjlmc\": \"未审核\",\n                \"sjspyj\": \"\",\n                \"spjsbz\": 0,\n                \"spjsbzmc\": \"否\",\n                \"ssxmjd\": 9,\n                \"syh\": \"2018-0006-003\",\n                \"wtlx\": \"财务\",\n                \"wtzy\": \"测试-取证表复核\",\n                \"xmbm\": \"2018-0006\",\n                \"xmwtxh\": 3,\n                \"yjspjl\": 0,\n                \"yjspjlmc\": \"未审核\",\n                \"yjspyj\": \"\",\n                \"yxbz\": 1,\n                \"yxbzmc\": \"正常\"\n            }\n        ]"
+			},
+			"response": []
+		},
+		{
+			"name": "取证-查询取证表详细信息",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"xmbm\":\"项目编码-2018-0006\",\n  \"xmwtxh\":取证表项目问题序号-4,\n  \"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUyMTUzNTczMDM1OSwiaWF0IjoxNTIxNTMyMTMwMzU5LCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.I-WoF_KvprFagjJaewvN97FIV5hBcfVLGdPVzzQtD4I\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/obtainEvidence/showQzbInfoForObtainEvidence",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"obtainEvidence",
+						"showQzbInfoForObtainEvidence"
+					]
+				},
+				"description": "\"qzbInfo\": {\n            \"bsdwfzr\": \"被审计单位负责人\",\n            \"bsdwyj\": \"被审计单位意见-无意见\",\n            \"bsjdwtjbz\": 被审计单位提交标识-1,\n            \"bsjdwzzrbmmc\": \"被审计单位主责部门名称-办公室\",\n            \"bsjdwzzrbmzzbm\": \"被审计单位主责部门组织编码-9916\",\n            \"bzsm\": \"备注说明-请于收到审计取证记录表之日起五个工作日内给予书面回复意见，否则将视为同意上述审计发现事项。（如有不同意见，可提前当面沟通，提高效率）\",\n            \"cjrid\": 创建人ID-2036,\n            \"cjsj\": \"c创建时间-2018-03-19 17:55:09\",\n            \"cnbz\": 采纳标志-0,\n            \"czrid\": 操作人ID-2036,\n            \"czsj\": \"操作时间-2018-03-19 17:55:09\",\n            \"dwbm\": \"实施单位编码-050100\",\n            \"ejjspjl\": 二级审批结论-0,\n            \"ejjspjlmc\": \"二级审批结论名称\",\n            \"ejjsprid\": 二级审批人Id-0,\n            \"ejjsprmc\": \"二级审批人名称\",\n            \"ejjspsj\": \"二级审批时间\",\n            \"ejjspyj\": \"二级审批意见\",\n            \"fxbid\": 风险包ID-0,\n            \"fxdid\": 风险点id,\n            \"fxdmc\": \"风险点名称\",\n            \"glbgf\": 问题金额_管理不规范-0,\n            \"hjje\": 问题金额_合计金额-0,\n            \"hsbgf\": 问题金额_核算不规范-0,\n            \"jtsjsx\": \"具体审计事项\",\n            \"kjqj\": \"会计期间或者截止日期\",\n            \"qtzzbmmc\": \"其他责任部门名称-办公室\",\n            \"qtzzbmzzbm\": \"其他责任部门组织编码-9916\",\n            \"qzbid\": \"取证表id-c5413ce7-143b-46f7-b401-54dd97fc93b2\",\n            \"qzbssbsjdwdwbm\": \"取证表所属被审计单位单位编码-057800-0100\",\n            \"qzbssbsjdwdwmc\": \"取证表所属被审计单位名称-云南电力劳动保障事务代理服务所有限公司\",\n            \"shygly\": 问题金额_损害员工利益-0,\n            \"shyhhtrly\": 问题金额_损害用户或他人利益-0,\n            \"sjfg\": \"审计分工-财务管理\",\n            \"sjje\": 涉及金额-0,\n            \"sjjy\": \"审计建议\",\n            \"sjrid\": 审计人id-2036,\n            \"sjrmc\": \"\",\n            \"sjrq\": \"审计日期-2018-03-19\",\n            \"sjspjl\": 三级审批结论-0,\n            \"sjspjlmc\": \"三级审批结论名称\",\n            \"sjsprid\": 三级审批人Id-0,\n            \"sjsprmc\": \"三级审批人名称\",\n            \"sjspsj\": \"三级审批时间\",\n            \"sjspyj\": \"三级审批意见\",\n            \"sjzsids\": \"\",\n            \"sjzsmcs\": \"\",\n            \"sjzzid\": 审计组长id-2036,\n            \"sjzzmc\": \"\",\n            \"spjsbz\": 审批结束标志-0,\n            \"spjsbzmc\": \"审批结束标志名称\",\n            \"sslf\": 问题金额_损失浪费-0,\n            \"ssryid\": 实施人员id-2036,\n            \"ssrymc\": \"实施人员名称\",\n            \"ssxmjd\": 实施项目阶段-8,\n            \"ssxmjdmc\": \"实施项目阶段名称\",\n            \"syfg\": \"适用法规-法规制度依据\",\n            \"syh\": \"索引号-2018-0006-004\",\n            \"wgje\": 问题金额_违规-0,\n            \"wjje\": 问题金额_违纪-0,\n            \"wtfsjssj\": \"问题发生结束时间-2018-03\",\n            \"wtfskssj\": \"问题发生开始时间-2018-03\",\n            \"wtlx\": \"问题类型-财务\",\n            \"wtzt\": 问题状态-0,\n            \"wtzy\": \"问题摘要-测试-取证-0\",\n            \"xmbm\": \"2018-0006\",\n            \"xmmc\": \"\",\n            \"xmwtxh\": 项目问题序号（1,2,3,..）,\n            \"yjspjl\": 一级审批结论-0,\n            \"yjspjlmc\": \"一级审批结论名称\",\n            \"yjsprid\": 一级审批人Id-0,\n            \"yjsprmc\": \"一级审批人名称\",\n            \"yjspsj\": \"一级审批时间\",\n            \"yjspyj\": \"一级审批意见\",\n            \"yssjdw\": \"延伸审计单位\",\n            \"yxbz\": 有效标志-1,\n            \"yxbzmc\": \"有效标志名称-正常\",\n            \"zrdx\": 责任定性-0,\n            \"zrdxmc\": \"责任定性名称\",\n            \"fjInfoList\": [\n                {\n                    \"fjid\": 附件ID,\n                  \"fwqid\": 服务器Id,\n                  \"md5\": \"MD5值\",\n                  \"sjfjmc\": \"审计附件名称\",\n                  \"wjbs\": \"文件标识\",\n                \"wjdx\": 文件大小,\n                  \"wjhz\": \"文件后缀\",\n                \"wjlj\": \"文件路径\",\n                  \"wjmc\": \"文件名称\"\n                },\n                {\n                    \"fjid\": 858,\n                    \"fwqid\": 0,\n                    \"md5\": \"F2956A63118050D4DCBE52A2EC482D0F\",\n                    \"sjfjmc\": \"18审计资源管理-中介机构-弹窗2.jpg\",\n                    \"wjbs\": \"QSTlmRGDJhazj8Kbr7kIUPKZAguJ3DzH\",\n                    \"wjdx\": 837,\n                    \"wjhz\": \"jpg\",\n                    \"wjlj\": \"0/GN003001009/6/2018-03-20/050100\",\n                    \"wjmc\": \"18审计资源管理-中介机构-弹窗2.jpg\"\n                }\n            ]\n        }"
+			},
+			"response": []
+		},
+		{
+			"name": "取证-给取证表上传关联的附件",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"xmbm\":\"项目编码-2018-0006\",\r\n\t\"ywxxid\":取证表的 xmwtxh(项目问题序号字段)-4,\r\n\t\"ryId\":上传人Id,\r\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUyMjEzNzQ1NTIwMywiaWF0IjoxNTIyMTMzODU1MjAzLCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.i56CNWt_f-71mOhOQRyWyOAd_4PKIXjN4RRkvagLNPU\",\r\n\t\"fileList\":[\r\n\t\t{\r\n\t\t\t\"sjfjmc\": \"文件名称-123_1.jpg\",\r\n        \t\"wjhz\": \"文件后缀-jpg\",\r\n        \t\"fileInfo\":\"data:image/*;charset=utf-8;base64,加Base64编码\"\r\n\t\t},\r\n\t\t... ...\r\n\t\t{\r\n\t\t\t\"sjfjmc\": \"123_1.jpg\",\r\n        \t\t\"wjhz\": \"jpg\",\r\n        \t\t\"fileInfo\":\"data:image/*;charset=utf-8;base64,xxxxxxxxxxxxxxx\"\r\n\t\t}\r\n\t]\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/obtainEvidence/updateFjForSjQzb",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"obtainEvidence",
+						"updateFjForSjQzb"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "取证-添加取证表",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"xmbm\":\"项目编码-2018-0014\",\r\n\t\"wtzy\":\"问题摘要-App测试-问题摘要-有附件\",\r\n\t\"ryId\":操作人ID,\r\n\t\"tokenId\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhbGciOiJIUzI1NiIsImF1ZCI6Im1vYmlsZSIsImV4cCI6MTUyMjE0NjY4MDE3MiwiaWF0IjoxNTIyMTQzMDgwMTcyLCJpc3MiOiJTSldlYlByb2plY3QiLCJwa2lLZXkiOiJsaXVqaW5nQHluZHcueW4uY3NnLmNuIiwidXNlcklkIjoiIn0.VUlu8Ffhz4PiKfkkEL4G0nzupeAkDvfT8umYQjyYyN4\",\r\n\t\"fileList\":[\r\n\t\t-- 文件信息可以为空(只创建取证表,不上传附件)\r\n\t\t{\r\n\t\t\t\"sjfjmc\": \"文件名称-123_1.jpg\",\r\n        \t\"wjhz\": \"文件后缀-jpg\",\r\n        \t\"fileInfo\":\"data:image/*;charset=utf-8;base64,加Base64编码\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"sjfjmc\": \"tttt_newqzb.jpg\",\r\n        \t\"wjhz\": \"jpg\",\r\n        \t\"fileInfo\":\"data:image/*;charset=utf-8;base64,\"\r\n\t\t}\r\n\t]\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/SJWebProject/app/obtainEvidence/addSjQzb",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"SJWebProject",
+						"app",
+						"obtainEvidence",
+						"addSjQzb"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

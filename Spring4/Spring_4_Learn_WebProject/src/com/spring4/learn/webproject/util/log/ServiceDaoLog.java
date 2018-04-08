@@ -27,6 +27,10 @@ public class ServiceDaoLog {
 		return "[Method:" + new Exception().getStackTrace()[1].getMethodName() + "]-[Info:'" + message + "']";
 	}
 	
+	public static String serviceDaoLogWithMethod(String methodName, String message){
+		return "[Method:" + methodName + "]-[Info:'" + message + "']";
+	}
+	
 	public static void main(String[] args){
 		System.out.println(serviceDaoLog("name:LILI, age:18", "Add user LILI!"));
 		System.out.println(serviceDaoLog("Get LILI info Success!"));
