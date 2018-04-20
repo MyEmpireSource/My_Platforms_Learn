@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring4.learn.webproject.util.FileContentType;
+import com.spring4.learn.webproject.util.ObjectToJson;
 import com.spring4.learn.webproject.util.Util;
 
 @Controller
@@ -69,6 +70,7 @@ public class FileViewOrDownload {
 		String filePath = request.getServletContext().getRealPath("/Files");
 		
 		String fileName = FILE_INFO_MAP.get(chooseFileType);
+		fileName = Util.isNullOrSpaces(fileName) ? "" : fileName;
 		String fileType = fileName.substring(fileName.lastIndexOf(".") + 1);
 		
 		////根据文件按类型设置content-type
@@ -89,18 +91,58 @@ public class FileViewOrDownload {
 			response.setHeader("content-type", "text/html;charset=" + encoding);
 		}
 	
-		File file = new File(filePath + "/" + fileName);
+		Map<String, String> statusMap = new HashMap<String, String> () {
+			{
+				put("result", "success");
+				put("info", URLEncoder.encode("All is OK!", "UTF-8"));
+			}
+		};
 		
-		OutputStream os = response.getOutputStream();
-		InputStream is = new FileInputStream(file);
+		Map<String, String> statusMapTest = new HashMap<String, String> () {
+			{
+				put("result", "success");
+				put("info", URLEncoder.encode("All is OK!!!", "UTF-8"));
+			}
+		};
 		
-		while((readLenght = is.read(buffer)) != -1) {
-			os.write(buffer, 0, readLenght);
+		response.setHeader("MyAttrStatusTest", ObjectToJson.converObjectToJsonWithoutNamae(statusMapTest, null).toString());
+		
+		try {
+		
+			// int i = 5 / 0; 测试异常
+			
+			OutputStream os = null;
+			File file = new File(filePath + "/" + fileName);
+			
+			if (!file.exists() || file.isDirectory()) {
+				statusMap.put("result", "fail");
+				statusMap.put("info", URLEncoder.encode("文件不存在!", "UTF-8"));
+				response.setHeader("MyAttrStatus", ObjectToJson.converObjectToJsonWithoutNamae(statusMap, null).toString());
+				os = response.getOutputStream();
+			} else {
+				response.setHeader("MyAttrStatus", ObjectToJson.converObjectToJsonWithoutNamae(statusMap, null).toString());
+				os = response.getOutputStream();
+				InputStream is = new FileInputStream(file);
+				
+				while((readLenght = is.read(buffer)) != -1) {
+					os.write(buffer, 0, readLenght);
+				}
+				
+				is.close();
+			}
+			
+			
+			os.flush();
+			os.close();
+			
+		}  catch (Exception e) {
+			statusMap.put("result", "fail");
+			statusMap.put("info", URLEncoder.encode("执行异常", "UTF-8"));
+			
+			response.setHeader("MyAttrStatus", ObjectToJson.converObjectToJsonWithoutNamae(statusMap, null).toString());
+			
+			response.getWriter().flush();
 		}
-		
-		os.flush();
-		os.close();
-		is.close();
 	}
 	
 	/**
